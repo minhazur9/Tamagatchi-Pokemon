@@ -8,6 +8,7 @@
 body {
     background:#8147FC;
     font-size: 20px;
+    min-height: 100vh;
 }
 
 header {
@@ -35,9 +36,26 @@ header {
 }
 
 #screen {
-    margin-top: -85px;
+    position: absolute;
     border: 5px solid black;
-    min-height: 70vh;
-    margin-right: 30px;
-    margin-left: 30px;
+    min-height: 70%;
+    min-width: 90%;
+    top: 80px;
+    left: 75px;
+}
+
+.button {
+    position: relative;
+    display: inline-block;
+    background-color: #DDDDDD;
+    margin-top: 440px;
+    margin-left: 40px;
+    min-height: 100px;
+    min-width: 100px;
+    border: 1px solid black;
+    border-radius: 50px;
+    text-align: center;
+    padding: 20px;
+    padding-top: 35px;
+    font-size: 30px;
 }
