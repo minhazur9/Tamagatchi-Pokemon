@@ -4,6 +4,11 @@
     margin: 0;
     font-family: 'VT323', monospace;
     list-style-type: none;
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+     user-select: none;
 }
 
 body {
@@ -11,6 +16,13 @@ body {
     font-size: 25px;
     min-height: 100vh;
 }
+
+img { 
+    -webkit-user-drag: none; 
+    -khtml-user-drag: none; 
+    -moz-user-drag: none; 
+    -o-user-drag: none;  
+  }
 
 header {
     padding-top: 2px;
@@ -77,18 +89,20 @@ header {
 #sun {
     position: absolute;
     max-width: 10%;
-    top:1px;
-    left:1px;
+    top: 1px;
+    left: 1px;
+    animation-name: drop;
+    animation-duration: 1s;
 }
 
 #pokemon-list {
     position: absolute;
     display: flex;
+    visibility: hidden;
     justify-content: space-between;
     top: 290px;
     left: 660px;
-    animation-name: drop;
-    animation-duration: 2s;
+    animation-fill-mode: forwards;
 }
 
 #pokemon-list li {
@@ -126,23 +140,27 @@ header {
 }
 
 #pokemon-list li:hover {
-    border: 2px dashed red;
+    border: 3px dashed red;
+    cursor: default;
 }
+
+#egg {
+    position: absolute;
+    max-width: 5%;
+    left: 780px;
+    top: 365px;
+    z-index: 1;
+}
+
+/* Animations */
 
 @keyframes slideIn {
     from {
         left: 1419px;
     }
-
-    to {
-        left: 300px;
-    }
 }
 
 @keyframes fadeOut {
-    from {
-        opacity:100%
-    }
     to {
         opacity: 0%;
     }
@@ -153,15 +171,37 @@ header {
         top:-140px;
     }
     to {
-        top: 290px
+        visibility: visible;
     }
 }
 
-#egg {
-    position: absolute;
-    max-width: 5%;
-    left: 780px;
-    top: 365px;
-    z-index: 1;
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(-30deg);
+    }
+
+    40% {
+        transform: rotate(0deg);
+    }
+
+    60% {
+        transform: rotate(50deg);
+    }
+
+    80% {
+        transform: rotate(0deg);
+    }
+
+    82%, 86%, 90%, 94%, 98% {
+        transform: translateX(1px);
+    }
+
+    84%, 88%, 92%, 96%, 100%  {
+        transform: translateX(-1px);
+    }
 }
 
