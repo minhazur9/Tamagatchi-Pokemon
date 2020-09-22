@@ -38,9 +38,9 @@ header {
     position: absolute;
     border: 10px solid black;
     min-height: 70%;
-    min-width: 90%;
+    min-width: 80%;
     top: 80px;
-    left: 75px;
+    left: 155px;
     background-color: #84DBFE;
 }
 
@@ -63,6 +63,7 @@ header {
     padding-top: 35px;
     font-size: 40px;
     cursor: pointer;
+    /* filter: drop-shadow(5px 5px 2px black); */
 }
 
 #ground {
@@ -85,4 +86,12 @@ header {
     left: 300px;
     border: 2px dashed red;
     padding: 30px;
+}
+
+#egg {
+    position: absolute;
+    max-width: 5%;
+    left: 780px;
+    top: 365px;
+    z-index: 1;
 }
