@@ -42,6 +42,7 @@ header {
     top: 80px;
     left: 155px;
     background-color: #84DBFE;
+    overflow: hidden;
 }
 
 #button-group {
@@ -50,8 +51,6 @@ header {
 }
 
 .button {
-    position: relative;
-    display: inline-block;
     background-color: #DDDDDD;
     margin-top: 440px;
     min-height: 110px;
@@ -82,10 +81,35 @@ header {
 
 #start {
     position: absolute;
-    top:200px;
+    top: 200px;
     left: 300px;
     border: 2px dashed red;
     padding: 30px;
+    white-space: nowrap;
+    animation-fill-mode: forwards;
+    animation-name: slideIn;
+    animation-duration: 2s;
+    cursor: default;
+    
+}
+
+@keyframes slideIn {
+    from {
+        left: 1419px;
+    }
+
+    to {
+        left: 300px;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity:100%
+    }
+    to {
+        opacity: 0%;
+    }
 }
 
 #egg {
@@ -95,3 +119,4 @@ header {
     top: 365px;
     z-index: 1;
 }
+
