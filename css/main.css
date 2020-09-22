@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'VT323', monospace;
+}
+
+body {
+    background:#8147FC;
+    font-size: 20px;
+}
+
+header {
+    padding-top: 2px;
+    min-height: 23vh;
+}
+
+#stats {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    color: white;
+    list-style-type: none;
+}
+
+.meter div {
+    margin-bottom: -2px;
+    min-height: 15px;
+    margin-left: 1px;
+    display: inline-block;
+    border: 2px solid black;
+    background-color:white;
+    min-width: 5px;
+}
+
+#screen {
+    margin-top: -85px;
+    border: 5px solid black;
+    min-height: 70vh;
+    margin-right: 30px;
+    margin-left: 30px;
+}
