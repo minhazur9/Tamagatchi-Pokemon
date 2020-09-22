@@ -7,7 +7,7 @@
 
 body {
     background:#8147FC;
-    font-size: 20px;
+    font-size: 25px;
     min-height: 100vh;
 }
 
@@ -63,4 +63,26 @@ header {
     padding-top: 35px;
     font-size: 40px;
     cursor: pointer;
+}
+
+#ground {
+    position: relative;
+    border-top: 2px solid black;
+    min-height: 64px;
+    margin-top: 420px;
+    background-color: #A9AB4C;
+    padding-bottom: 0;
+}
+
+#sun {
+    position: absolute;
+    max-width: 10%;
+}
+
+#start {
+    position: absolute;
+    top:200px;
+    left: 300px;
+    border: 2px dashed red;
+    padding: 30px;
 }
