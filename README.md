@@ -19,3 +19,12 @@ There should be an egg thats far from the start text.
 
 The start text should go away.
 
+The three starter pokemon should appear directly above the egg waiting for you to choose one of them.
+
+There should be a border when hovering over one of the pokemon.
+
+After choosing one of them all three should disappear.
+
+The egg should start rotating as if it is hatching.
+
+The screen should fade to white and fade back in with the egg gone and the chosen pokemon replacing it.

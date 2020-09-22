@@ -3,6 +3,7 @@
     padding: 0;
     margin: 0;
     font-family: 'VT323', monospace;
+    list-style-type: none;
 }
 
 body {
@@ -22,7 +23,6 @@ header {
     justify-content: space-around;
     flex-direction: row;
     color: white;
-    list-style-type: none;
 }
 
 .meter div {
@@ -77,6 +77,38 @@ header {
 #sun {
     position: absolute;
     max-width: 10%;
+    top:1px;
+    left:1px;
+}
+
+#pokemon-list {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 290px;
+    left: 660px;
+    animation-name: drop;
+    animation-duration: 2s;
+}
+
+#pokemon-list li {
+    position: relative;
+    padding: 0 10px;
+    margin: 0 10px;
+}
+
+#bulbasaur {
+    max-width: 60px;
+}
+
+#squirtle {
+    max-width: 60px;
+    margin-top:5px;
+}
+
+#charmander {
+    max-width: 60px;
+    margin-top:5px;
 }
 
 #start {
@@ -91,6 +123,10 @@ header {
     animation-duration: 2s;
     cursor: default;
     
+}
+
+#pokemon-list li:hover {
+    border: 2px dashed red;
 }
 
 @keyframes slideIn {
@@ -109,6 +145,15 @@ header {
     }
     to {
         opacity: 0%;
+    }
+}
+
+@keyframes drop {
+    from {
+        top:-140px;
+    }
+    to {
+        top: 290px
     }
 }
 
