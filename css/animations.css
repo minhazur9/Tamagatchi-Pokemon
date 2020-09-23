@@ -68,3 +68,19 @@
         opacity: 100%
     }
 }
+
+@keyframes bounce {
+    50% {
+        top:350px;
+        transform: rotate(180deg);
+    }
+
+    90% {
+        opacity: 100%
+    }
+    100% {
+        transform: rotate(360deg);
+        opacity: 0%;
+        visibility: hidden;
+    }
+}

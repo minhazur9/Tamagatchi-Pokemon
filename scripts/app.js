@@ -40,22 +40,22 @@ class Pet {
     }
 
     hungerDown() {
-        if(this.hunger <= 0) return;
+        if (this.hunger <= 0) return;
         $(`#hunger li:nth-child(${this.hunger})`).css('background-color', 'inherit');
         this.hunger--
     }
 
     sleepDown() {
-        if(this.sleepiness <= 1) return;
+        if (this.sleepiness <= 1) return;
         $(`#sleepy li:nth-child(${this.sleepiness})`).css('background-color', 'inherit');
-        $(`#sleepy li:nth-child(${this.sleepiness-1})`).css('background-color', 'inherit');
+        $(`#sleepy li:nth-child(${this.sleepiness - 1})`).css('background-color', 'inherit');
         this.sleepiness -= 2;
     }
 
     boredDown() {
-        if(this.boredom <= 1) return;
+        if (this.boredom <= 1) return;
         $(`#bored li:nth-child(${this.boredom})`).css('background-color', 'inherit');
-        $(`#bored li:nth-child(${this.boredom-1})`).css('background-color', 'inherit');
+        $(`#bored li:nth-child(${this.boredom - 1})`).css('background-color', 'inherit');
         this.boredom -= 2;
     }
 
@@ -116,6 +116,8 @@ function cycle() {
 // Adjusts the time on the HUD
 function adjustTime() {
     myPet.hungerUp();
+    myPet.sleepUp();
+    myPet.boredUp();
     if (min % 10 === 0) { // Keeps track of first minute digit
         min = 0;
         minTen++;
@@ -181,19 +183,27 @@ $('#pokemon-list').on('click', 'li', function (event) {
 
 });
 
-$('#feed').click(function() {
-    if(myPet.hunger >= 1) 
-    $('#screen').append('<img src="./images/rare_candy.png" alt="Rare Candy" class="rare_candy"></img>');
-    myPet.hungerDown();
-    
+$('#feed').click(function () {
+    if (myPet.hunger >= 1) {
+        $('#screen').append('<img src="./images/rare_candy.png" alt="Rare Candy" class="rare_candy"></img>');
+        myPet.hungerDown();
+    }
+
 })
 
-$('#sleep').click(function() {
-    myPet.sleepDown();
+$('#sleep').click(function () {
+    if (myPet.sleepiness >= 2) {
+        $('#screen').append('<img src="./images/house.png" alt="House" class="house"></img>');
+        myPet.sleepDown();
+    }
 })
 
-$('#play').click(function() {
-    myPet.boredDown();
+$('#play').click(function () {
+    if (myPet.boredom >= 2) {
+        $('.ball').remove();
+        $('#screen').append('<img src="./images/pokeball.png" alt="Pokeball" class="ball"></img>');
+        myPet.boredDown();
+    }
 })
 
 

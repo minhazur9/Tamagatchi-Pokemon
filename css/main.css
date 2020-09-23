@@ -196,4 +196,22 @@ header {
     animation-duration: 1s;
 }
 
+.house {
+    position: absolute;
+    max-width: 10%;
+    left: 500px;
+    top: 350px;
+    z-index: 3;
+}
+
+.ball {
+    position: absolute;
+    max-width: 3%;
+    left: 780px;
+    top: 200px;
+    animation-name: bounce;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
 
