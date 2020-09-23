@@ -3,6 +3,8 @@ let min = 0;
 let minTen = 0
 let hour = 0;
 let hourTen = 0
+let day = 0;
+let age = 0;
 
 
 
@@ -10,7 +12,6 @@ let hourTen = 0
 //-----------------Functions-----------------
 function tick() {
     let time = setInterval(function () {
-        console.log(min)
         min++;
         if(min % 10 === 0) {
              min = 0;
@@ -27,9 +28,19 @@ function tick() {
         if(hourTen === 2 && hour === 4) {
             hour = 0;
             hourTen = 0;
+            day++;
+        }
+        if(day == 5 && day !== 0) {
+            day = 0;
+            ageUp();
         }
         $('#time').text(`${hourTen}${hour}:${minTen}${min}`)
     }, 1000)
+}
+
+function ageUp() {
+    age++;
+    $('#age').text(`${age}`)
 }
 
 
@@ -58,7 +69,6 @@ $('#pokemon-list').on('click', 'li', function (event) {
     $("#egg").css({ "animation-name": "shake" });
     animate = setInterval(function () {
         t++;
-        console.log(t);
         if (t === 3) {
             $('#egg').css({
                 "animation-name": "fadeOut",
