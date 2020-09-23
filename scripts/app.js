@@ -30,13 +30,33 @@ class Pet {
     // Increments sleepiness
     sleepUp() {
         this.sleepiness++;
-        $(`#sleep li:nth-child(${this.sleepiness})`).css('background-color', 'red');
+        $(`#sleepy li:nth-child(${this.sleepiness})`).css('background-color', 'red');
     }
 
     // Increments boredom
     boredUp() {
         this.boredom++;
         $(`#bored li:nth-child(${this.boredom})`).css('background-color', 'red');
+    }
+
+    hungerDown() {
+        if(this.hunger <= 1) return;
+        $(`#hunger li:nth-child(${this.hunger})`).css('background-color', 'inherit');
+        this.hunger--
+    }
+
+    sleepDown() {
+        if(this.sleepiness <= 1) return;
+        $(`#sleepy li:nth-child(${this.sleepiness})`).css('background-color', 'inherit');
+        $(`#sleepy li:nth-child(${this.sleepiness-1})`).css('background-color', 'inherit');
+        this.sleepiness -= 2;
+    }
+
+    boredDown() {
+        if(this.boredom <= 1) return;
+        $(`#bored li:nth-child(${this.boredom})`).css('background-color', 'inherit');
+        $(`#bored li:nth-child(${this.boredom-1})`).css('background-color', 'inherit');
+        this.boredom -= 2;
     }
 
 
@@ -93,10 +113,14 @@ function cycle() {
 
 }
 
+// Adjusts the time on the HUD
 function adjustTime() {
     if (min % 10 === 0) { // Keeps track of first minute digit
         min = 0;
         minTen++;
+        myPet.hungerUp();
+        myPet.sleepUp();
+        myPet.boredUp();
     }
     if (minTen % 6 === 0 && minTen !== 0) { // Keeps track of second hour digit
         minTen = 0;
@@ -159,5 +183,16 @@ $('#pokemon-list').on('click', 'li', function (event) {
 
 });
 
+$('#feed').click(function() {
+    myPet.hungerDown();
+})
+
+$('#sleep').click(function() {
+    myPet.sleepDown();
+})
+
+$('#play').click(function() {
+    myPet.boredDown();
+})
 
 
