@@ -5,12 +5,11 @@ let hour = 0; // hours
 let hourTen = 0 // tenth digit for hour
 let day = 0; // days
 let realSec = 0; // Real world seconds
-// let topGap = 1; // Distance from the top of the screen
-let topGap = 508;
-
+let topGap = 0; // Distance from the top of the screen
+let night = false;
 class Pet {
     constructor(hunger = 0, age = 0, sleepiness = 0, boredom = 0) {
-        this.hunger = hunger; 
+        this.hunger = hunger;
         this.age = age;
         this.sleepiness = sleepiness;
         this.boredom = boredom;
@@ -53,8 +52,9 @@ function tick() {
     let time = setInterval(function () {
         min++;
         realSec++;
-        moveSun();
-        cycle();
+        if (realSec % 2 === 0 && realSec !== 0) {
+            cycle();
+        }
         adjustTime();
         if (realSec % 360 === 0 && realSec !== 0) { // Keeps track of meters
             myPet.hungerUp();
@@ -69,19 +69,28 @@ function tick() {
 
 }
 
-// Moves the sun down
-function moveSun() {
-    if(topGap === 511) return;
-    topGap++;
-    $('#sun').css(`transform`,`translateY(${topGap}px)`);
-}
-
-// Changes day/night
+// Cycles through the day and night
 function cycle() {
-    if(topGap === 510) {
+    topGap++;
+    if (topGap === 413) {
+        night = !night;
+        topGap = 0;
         $('#screen').toggleClass('night');
+    }
+    if (night === false) {
+        if (topGap === 0) {
+            $('#moon').remove();
+            $('#screen').append('<img src="./images/sun.png" alt="The Sun" id="sun"></img>');
+        }
+        $('#sun').css(`transform`, `translateY(${topGap}px)`);
+        return;
+    }
+    if (topGap === 0) {
+        $('#sun').remove();
         $('#screen').append('<img src="./images/moon.png" alt="The Moon" id="moon">');
     }
+    $('#moon').css(`transform`, `translateY(${topGap}px)`);
+
 }
 
 function adjustTime() {
