@@ -1,49 +1,70 @@
 // -----------------Variables---------------
-let min = 0;
-let minTen = 0
-let hour = 0;
-let hourTen = 0
-let day = 0;
-let age = 0;
+let min = 0; // minutes
+let minTen = 0 // tenth digit for min
+let hour = 0; // hours
+let hourTen = 0 // tenth digit for hour
+let day = 0; // days
+let realSec = 0; // Real world seconds
+
+class Pet {
+    constructor(hunger = 0, age = 0, sleepiness = 0, boredom = 0) {
+        this.hunger = hunger;
+        this.age = age;
+        this.sleepiness = sleepiness;
+        this.boredom = boredom;
+    }
+
+    // Increments age
+    ageUp() {
+        this.age++;
+        $('#age').text(`${this.age}`);
+    }
+
+    hungerUp() {
+        this.hunger++;
+        $(`#hunger li:nth-child(${this.hunger})`).css('background-color','red');
+    }
+
+}
 
 
 
 
 //-----------------Functions-----------------
+
+// ticks the clock starting from when you first start the game
 function tick() {
     let time = setInterval(function () {
         min++;
-        if(min % 10 === 0) {
-             min = 0;
-             minTen++; 
+        realSec++;
+        if (min % 10 === 0) {
+            min = 0;
+            minTen++;
         }
-        if(minTen % 6 === 0 && minTen !== 0) {
+        if (realSec % 360 === 0 && realSec !== 0) {
+            myPet.hungerUp();
+        }
+        if (minTen % 6 === 0 && minTen !== 0) {
             minTen = 0;
             hour++;
         }
-        if(hour % 10 === 0 && hour !== 0) {
+        if (hour % 10 === 0 && hour !== 0) {
             hour = 0;
             hourTen++;
         }
-        if(hourTen === 2 && hour === 4) {
+        if (hourTen === 2 && hour === 4) {
             hour = 0;
             hourTen = 0;
             day++;
         }
-        if(day == 5 && day !== 0) {
+        if (day == 5 && day !== 0) {
             day = 0;
-            ageUp();
+            myPet.ageUp();
         }
         $('#time').text(`${hourTen}${hour}:${minTen}${min}`)
     }, 1000)
+
 }
-
-function ageUp() {
-    age++;
-    $('#age').text(`${age}`)
-}
-
-
 
 
 //-----------------Event Listeners---------------------
@@ -63,6 +84,7 @@ $('#screen').on('click', function (event) {
 
 $('#pokemon-list').on('click', 'li', function (event) {
     let t = 0;
+    myPet = new Pet();
     $('#start').remove();
     $('#pokemon-list li').css({ "animation-name": "fadeOut" });
     $('#screen').css({ "animation-name": "screen-fade" })
@@ -76,6 +98,7 @@ $('#pokemon-list').on('click', 'li', function (event) {
             })
         }
         if (t === 4) {
+            // Your tomagotchi
             $('.pet').detach().appendTo('#screen');
         }
         if (t === 5) {

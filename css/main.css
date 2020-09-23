@@ -37,13 +37,13 @@ header {
     color: white;
 }
 
-.meter div {
+.meter li {
     margin-bottom: -2px;
     min-height: 15px;
     margin-left: 1px;
     display: inline-block;
-    border: 2px solid red;
-    min-width: 5px;
+    border: 2px solid white;
+    min-width: 7px;
 }
 
 #screen {
