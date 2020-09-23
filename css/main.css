@@ -46,20 +46,6 @@ header {
     min-width: 7px;
 }
 
-#screen {
-    position: absolute;
-    border: 10px solid black;
-    min-height: 70%;
-    min-width: 80%;
-    top: 80px;
-    left: 155px;
-    background-color: #84DBFE;;
-    overflow: hidden;
-    animation-delay: 2s;
-    animation-duration: 1s;
-    animation-iteration-count: 2;
-}
-
 #button-group {
     display: flex;
     justify-content: space-around;
@@ -78,6 +64,21 @@ header {
     font-size: 40px;
     cursor: pointer;
     /* filter: drop-shadow(5px 5px 2px black); */
+}
+
+
+#screen {
+    position: absolute;
+    border: 10px solid black;
+    min-height: 70%;
+    min-width: 80%;
+    top: 80px;
+    left: 155px;
+    background-color: #84DBFE;;
+    overflow: hidden;
+    animation-delay: 2s;
+    animation-duration: 1s;
+    animation-iteration-count: 2;
 }
 
 #ground {
@@ -135,6 +136,11 @@ header {
     animation-fill-mode :forwards
 }
 
+#pokemon-list li:hover {
+    border: 3px dashed red;
+    cursor: default;
+}
+
 #bulbasaur {
     max-width: 65px;
 }
@@ -163,11 +169,6 @@ header {
     
 }
 
-#pokemon-list li:hover {
-    border: 3px dashed red;
-    cursor: default;
-}
-
 #egg {
     position: absolute;
     max-width: 5%;
@@ -183,6 +184,16 @@ header {
     left: 780px;
     top: 380px;
     z-index: 3;
+}
+
+.rare_candy {
+    position: absolute;
+    max-width: 4%;
+    z-index: 3;
+    top: 400px;
+    left: 200px;
+    animation-name: drop_candy;
+    animation-duration: 1s;
 }
 
 

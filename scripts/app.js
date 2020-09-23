@@ -40,7 +40,7 @@ class Pet {
     }
 
     hungerDown() {
-        if(this.hunger <= 1) return;
+        if(this.hunger <= 0) return;
         $(`#hunger li:nth-child(${this.hunger})`).css('background-color', 'inherit');
         this.hunger--
     }
@@ -115,12 +115,10 @@ function cycle() {
 
 // Adjusts the time on the HUD
 function adjustTime() {
+    myPet.hungerUp();
     if (min % 10 === 0) { // Keeps track of first minute digit
         min = 0;
         minTen++;
-        myPet.hungerUp();
-        myPet.sleepUp();
-        myPet.boredUp();
     }
     if (minTen % 6 === 0 && minTen !== 0) { // Keeps track of second hour digit
         minTen = 0;
@@ -184,7 +182,10 @@ $('#pokemon-list').on('click', 'li', function (event) {
 });
 
 $('#feed').click(function() {
+    if(myPet.hunger >= 1) 
+    $('#screen').append('<img src="./images/rare_candy.png" alt="Rare Candy" class="rare_candy"></img>');
     myPet.hungerDown();
+    
 })
 
 $('#sleep').click(function() {
