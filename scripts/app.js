@@ -5,7 +5,8 @@ let hour = 0; // hours
 let hourTen = 0 // tenth digit for hour
 let day = 0; // days
 let realSec = 0; // Real world seconds
-let topGap = 1; // The pixel distance from the top of the screen
+// let topGap = 1; // Distance from the top of the screen
+let topGap = 508;
 
 class Pet {
     constructor(hunger = 0, age = 0, sleepiness = 0, boredom = 0) {
@@ -52,43 +53,56 @@ function tick() {
     let time = setInterval(function () {
         min++;
         realSec++;
-        if (realSec % 3 === 0 && realSec !== 0) {
-            moveSun();
-        }
-        if (min % 10 === 0) { // Keeps track of first minute digit
-            min = 0;
-            minTen++;
-        }
+        moveSun();
+        cycle();
+        adjustTime();
         if (realSec % 360 === 0 && realSec !== 0) { // Keeps track of meters
             myPet.hungerUp();
             myPet.sleepUp();
             myPet.boredUp();
         }
-        if (minTen % 6 === 0 && minTen !== 0) { // Keeps track of second hour digit
-            minTen = 0;
-            hour++;
-        }
-        if (hour % 10 === 0 && hour !== 0) { // Keeps track of first hour digit
-            hour = 0;
-            hourTen++;
-        }
-        if (hourTen === 2 && hour === 4) { // Keeps track of amount of days passed
-            hour = 0;
-            hourTen = 0;
-            day++;
-        }
         if (day == 5 && day !== 0) { // Keeps track of age
             day = 0;
             myPet.ageUp();
         }
-        $('#time').text(`${hourTen}${hour}:${minTen}${min}`)
     }, 1000)
 
 }
 
+// Moves the sun down
 function moveSun() {
+    if(topGap === 511) return;
     topGap++;
-    $('#sun').css(`top`, `${topGap}px`)
+    $('#sun').css(`transform`,`translateY(${topGap}px)`);
+}
+
+// Changes day/night
+function cycle() {
+    if(topGap === 510) {
+        $('#screen').toggleClass('night');
+        $('#screen').append('<img src="./images/moon.png" alt="The Moon" id="moon">');
+    }
+}
+
+function adjustTime() {
+    if (min % 10 === 0) { // Keeps track of first minute digit
+        min = 0;
+        minTen++;
+    }
+    if (minTen % 6 === 0 && minTen !== 0) { // Keeps track of second hour digit
+        minTen = 0;
+        hour++;
+    }
+    if (hour % 10 === 0 && hour !== 0) { // Keeps track of first hour digit
+        hour = 0;
+        hourTen++;
+    }
+    if (hourTen === 2 && hour === 4) { // Keeps track of amount of days passed
+        hour = 0;
+        hourTen = 0;
+        day++;
+    }
+    $('#time').text(`${hourTen}${hour}:${minTen}${min}`);
 }
 
 //-----------------Event Listeners---------------------

@@ -53,7 +53,7 @@ header {
     min-width: 80%;
     top: 80px;
     left: 155px;
-    background-color: #84DBFE;
+    background-color: #84DBFE;;
     overflow: hidden;
     animation-delay: 2s;
     animation-duration: 1s;
@@ -90,11 +90,25 @@ header {
     z-index: 2;
 }
 
+.night {
+    background-color : #0C1343 !important;
+}
+
 #sun {
     position: absolute;
     max-width: 10%;
     top: 1px;
     left: 1px;
+    animation-name: drop;
+    animation-duration: 1s;
+    z-index: 1;
+}
+
+#moon {
+    position: absolute;
+    max-width: 7%;
+    top: 5px;
+    left: 10px;
     animation-name: drop;
     animation-duration: 1s;
     z-index: 1;
