@@ -1,11 +1,36 @@
 // -----------------Variables---------------
-
+let min = 0;
+let minTen = 0
+let hour = 0;
+let hourTen = 0
 
 
 
 
 //-----------------Functions-----------------
-
+function tick() {
+    let time = setInterval(function () {
+        console.log(min)
+        min++;
+        if(min % 10 === 0) {
+             min = 0;
+             minTen++; 
+        }
+        if(minTen % 6 === 0 && minTen !== 0) {
+            minTen = 0;
+            hour++;
+        }
+        if(hour % 10 === 0 && hour !== 0) {
+            hour = 0;
+            hourTen++;
+        }
+        if(hourTen === 2 && hour === 4) {
+            hour = 0;
+            hourTen = 0;
+        }
+        $('#time').text(`${hourTen}${hour}:${minTen}${min}`)
+    }, 1000)
+}
 
 
 
@@ -45,10 +70,8 @@ $('#pokemon-list').on('click', 'li', function (event) {
         }
         if (t === 5) {
             $('#egg').remove();
+            tick();
             clearInterval(animate);
-        }
-
-        if (t === 6) {
         }
     }, 1000)
 

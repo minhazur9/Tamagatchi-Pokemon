@@ -28,3 +28,13 @@ After choosing one of them all three should disappear.
 The egg should start rotating as if it is hatching.
 
 The screen should fade to white and fade back in with the egg gone and the chosen pokemon replacing it.
+
+### After selection
+
+The time should start ticking as a 24 hour clock, 1 real sec = 1 game min, age up every 3.6 hrs.
+
+The meters should start gradually get shaded in every in game quarter day, which is 6 min.
+
+The sun should start gradually moving down and once it does, the background changes to black and the moon appears.
+
+The moon should do the same thing.
