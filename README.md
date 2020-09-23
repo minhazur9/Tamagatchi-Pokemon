@@ -33,7 +33,7 @@ The screen should fade to white and fade back in with the egg gone and the chose
 
 The time should start ticking as a 24 hour clock, 1 real sec = 1 game min, age up every 5 game days.
 
-The meters should start gradually get shaded in every in game quarter day, which is 6 min.
+The meters should start gradually get shaded in every in game quarter day, which is 6 min (time needed to increment may change).
 
 The sun should start gradually moving down and once it does, the background changes to black and the moon appears.
 

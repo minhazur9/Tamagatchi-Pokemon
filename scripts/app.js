@@ -5,10 +5,11 @@ let hour = 0; // hours
 let hourTen = 0 // tenth digit for hour
 let day = 0; // days
 let realSec = 0; // Real world seconds
+let topGap = 1; // The pixel distance from the top of the screen
 
 class Pet {
     constructor(hunger = 0, age = 0, sleepiness = 0, boredom = 0) {
-        this.hunger = hunger;
+        this.hunger = hunger; 
         this.age = age;
         this.sleepiness = sleepiness;
         this.boredom = boredom;
@@ -20,10 +21,24 @@ class Pet {
         $('#age').text(`${this.age}`);
     }
 
+    // Increments hunger
     hungerUp() {
         this.hunger++;
-        $(`#hunger li:nth-child(${this.hunger})`).css('background-color','red');
+        $(`#hunger li:nth-child(${this.hunger})`).css('background-color', 'red');
     }
+
+    // Increments sleepiness
+    sleepUp() {
+        this.sleepiness++;
+        $(`#sleep li:nth-child(${this.sleepiness})`).css('background-color', 'red');
+    }
+
+    // Increments boredom
+    boredUp() {
+        this.boredom++;
+        $(`#bored li:nth-child(${this.boredom})`).css('background-color', 'red');
+    }
+
 
 }
 
@@ -32,32 +47,37 @@ class Pet {
 
 //-----------------Functions-----------------
 
-// ticks the clock starting from when you first start the game
+// ticks the clock starting from when you first start the game and keeps track of all stats
 function tick() {
     let time = setInterval(function () {
         min++;
         realSec++;
-        if (min % 10 === 0) {
+        if (realSec % 3 === 0 && realSec !== 0) {
+            moveSun();
+        }
+        if (min % 10 === 0) { // Keeps track of first minute digit
             min = 0;
             minTen++;
         }
-        if (realSec % 360 === 0 && realSec !== 0) {
+        if (realSec % 360 === 0 && realSec !== 0) { // Keeps track of meters
             myPet.hungerUp();
+            myPet.sleepUp();
+            myPet.boredUp();
         }
-        if (minTen % 6 === 0 && minTen !== 0) {
+        if (minTen % 6 === 0 && minTen !== 0) { // Keeps track of second hour digit
             minTen = 0;
             hour++;
         }
-        if (hour % 10 === 0 && hour !== 0) {
+        if (hour % 10 === 0 && hour !== 0) { // Keeps track of first hour digit
             hour = 0;
             hourTen++;
         }
-        if (hourTen === 2 && hour === 4) {
+        if (hourTen === 2 && hour === 4) { // Keeps track of amount of days passed
             hour = 0;
             hourTen = 0;
             day++;
         }
-        if (day == 5 && day !== 0) {
+        if (day == 5 && day !== 0) { // Keeps track of age
             day = 0;
             myPet.ageUp();
         }
@@ -66,9 +86,14 @@ function tick() {
 
 }
 
+function moveSun() {
+    topGap++;
+    $('#sun').css(`top`, `${topGap}px`)
+}
 
 //-----------------Event Listeners---------------------
 
+// Click to start
 $('#screen').on('click', function (event) {
     $('#start').css({
         "animation-name": "fadeOut",
@@ -82,9 +107,11 @@ $('#screen').on('click', function (event) {
     $('#screen').off('click');
 })
 
+// Choose your pokemon
 $('#pokemon-list').on('click', 'li', function (event) {
     let t = 0;
     myPet = new Pet();
+    $(this).addClass('pet');
     $('#start').remove();
     $('#pokemon-list li').css({ "animation-name": "fadeOut" });
     $('#screen').css({ "animation-name": "screen-fade" })
@@ -98,7 +125,6 @@ $('#pokemon-list').on('click', 'li', function (event) {
             })
         }
         if (t === 4) {
-            // Your tomagotchi
             $('.pet').detach().appendTo('#screen');
         }
         if (t === 5) {
@@ -110,7 +136,5 @@ $('#pokemon-list').on('click', 'li', function (event) {
 
 });
 
-$('#pokemon-list').on('click', 'li', function () {
-    $(this).addClass('pet');
-})
+
 

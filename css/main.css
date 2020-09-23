@@ -87,6 +87,7 @@ header {
     margin-top: 420px;
     background-color: #A9AB4C;
     padding-bottom: 0;
+    z-index: 2;
 }
 
 #sun {
@@ -96,6 +97,7 @@ header {
     left: 1px;
     animation-name: drop;
     animation-duration: 1s;
+    z-index: 1;
 }
 
 #pokemon-list {
@@ -157,7 +159,7 @@ header {
     max-width: 5%;
     left: 780px;
     top: 365px;
-    z-index: 1;
+    z-index: 3;
     animation-duration: 2s;
     animation-fill-mode: forwards
 }
@@ -166,66 +168,7 @@ header {
     position: absolute;
     left: 780px;
     top: 380px;
-    z-index: 1;
+    z-index: 3;
 }
 
-/* Animations */
 
-@keyframes slideIn {
-    from {
-        left: 1419px;
-    }
-}
-
-@keyframes fadeOut {
-    to {
-        opacity: 0%;
-    }
-}
-
-@keyframes drop {
-    from {
-        top:-140px;
-    }
-    to {
-        visibility: visible;
-    }
-}
-
-@keyframes shake {
-
-    20% {
-        transform: rotate(-30deg);
-    }
-
-    40%,80% {
-        transform: rotate(0deg);
-    }
-
-    60% {
-        transform: rotate(50deg);
-    }
-
-    81%, 83%, 85%, 87%, 89%, 93%, 95%, 97%, 99% {
-        transform: translateX(1px);
-    }
-
-    82%, 84%, 86%, 88%, 94%, 96%, 98%, 100% {
-        transform: translateX(-1px);
-    }
-}
-
-@keyframes screen-fade {
-    50% {
-        background-color: white;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0%;
-    }
-    to {
-        opacity: 100%
-    }
-}
