@@ -184,6 +184,7 @@ $('#pokemon-list').on('click', 'li', function (event) {
 });
 
 $('#feed').click(function () {
+    $('.rare_candy').remove();
     if (myPet.hunger >= 1) {
         $('#screen').append('<img src="./images/rare_candy.png" alt="Rare Candy" class="rare_candy"></img>');
         myPet.hungerDown();
@@ -193,6 +194,14 @@ $('#feed').click(function () {
 
 $('#sleep').click(function () {
     if (myPet.sleepiness >= 2) {
+        let sleepTime = 0;
+        let nap = setInterval(function () {
+            sleepTime++;
+            if (sleepTime === 10) {
+                $('.house').remove();
+                clearInterval(nap);
+            }
+        }, 1000)
         $('#screen').append('<img src="./images/house.png" alt="House" class="house"></img>');
         myPet.sleepDown();
     }

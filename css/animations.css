@@ -70,13 +70,18 @@
 }
 
 @keyframes bounce {
-    50% {
+    25% {
         top:350px;
         transform: rotate(180deg);
     }
 
+    50% {
+        top: 200px;
+        transform: rotate(360deg);
+        
+    }
     90% {
-        opacity: 100%
+        opacity: 100%;
     }
     100% {
         transform: rotate(360deg);
