@@ -7,6 +7,7 @@ let day = 0; // days
 let realSec = 0; // Real world seconds
 let topGap = 0; // Distance from the top of the screen
 let night = false;
+let alive = true;
 class Pet {
     constructor(hunger = 0, age = 0, sleepiness = 0, boredom = 0) {
         this.hunger = hunger;
@@ -40,20 +41,17 @@ class Pet {
     }
 
     hungerDown() {
-        if (this.hunger <= 0) return;
         $(`#hunger li:nth-child(${this.hunger})`).css('background-color', 'inherit');
         this.hunger--
     }
 
     sleepDown() {
-        if (this.sleepiness <= 1) return;
         $(`#sleepy li:nth-child(${this.sleepiness})`).css('background-color', 'inherit');
         $(`#sleepy li:nth-child(${this.sleepiness - 1})`).css('background-color', 'inherit');
         this.sleepiness -= 2;
     }
 
     boredDown() {
-        if (this.boredom <= 1) return;
         $(`#bored li:nth-child(${this.boredom})`).css('background-color', 'inherit');
         $(`#bored li:nth-child(${this.boredom - 1})`).css('background-color', 'inherit');
         this.boredom -= 2;
@@ -88,14 +86,14 @@ function tick() {
         if (myPet.hunger === 10 || myPet.sleepiness === 10 || myPet.boredom === 10) {
             gameOver(time);
         }
-    }, 1000)
+    }, 1)
 
 }
 
 // Cycles through the day and night
 function cycle() {
     topGap++;
-    if (topGap === 413) {
+    if (topGap === 400) {
         night = !night;
         topGap = 0;
         $('#screen').toggleClass('night');
@@ -140,6 +138,20 @@ function adjustTime() {
 
 function gameOver(id) {
     clearInterval(id);
+    alive = false;
+    $('.pet').css({
+        "animation-name": "fadeOut",
+        "animation-duration": "1s",
+        "animation-fill-mode": "forwards"
+    });
+    $('.house').css({
+        "animation-name": "fadeOut",
+        "animation-duration": "1s",
+        "animation-fill-mode": "forwards"
+    });
+    $('.lights_off').remove();
+    $('#screen').append('<img src="./images/rip.png" alt="Grave" class="rip">')
+    $('#screen').append('<h1 class="game_over">Game Over</h1>')
 }
 
 //-----------------Event Listeners---------------------
@@ -162,9 +174,9 @@ $('#screen').on('click', function (event) {
 $('#pokemon-list').on('click', 'li', function (event) {
     let t = 0;
     myPet = new Pet();
+    $('#pokemon-list li').css({ "animation-name": "fadeOut" });
     $(this).addClass('pet');
     $('#start').remove();
-    $('#pokemon-list li').css({ "animation-name": "fadeOut" });
     $('#screen').css({ "animation-name": "screen-fade" })
     $("#egg").css({ "animation-name": "shake" });
     animate = setInterval(function () {
@@ -189,33 +201,38 @@ $('#pokemon-list').on('click', 'li', function (event) {
 
 $('#feed').click(function () {
     $('.rare_candy').remove();
-    if (myPet.hunger >= 1) {
+    if (myPet.hunger >= 1 && alive) {
         $('#screen').append('<img src="./images/rare_candy.png" alt="Rare Candy" class="rare_candy"></img>');
         myPet.hungerDown();
+        myPet.sleepUp();
     }
 
 })
 
 $('#sleep').click(function () {
-    if (myPet.sleepiness >= 2) {
+    if (myPet.sleepiness >= 2 && alive) {
         let sleepTime = 0;
         let nap = setInterval(function () {
             sleepTime++;
             if (sleepTime === 720) {
                 $('.house').remove();
                 clearInterval(nap);
+                $('.lights_off').remove();
             }
         }, 1000)
         $('#screen').append('<img src="./images/house.png" alt="House" class="house"></img>');
+        $('body').append('<div class="lights_off"></div>')
         myPet.sleepDown();
     }
 })
 
 $('#play').click(function () {
-    if (myPet.boredom >= 2) {
+    if (myPet.boredom >= 2 && alive) {
         $('.ball').remove();
         $('#screen').append('<img src="./images/pokeball.png" alt="Pokeball" class="ball"></img>');
         myPet.boredDown();
+        myPet.hungerUp();
+        myPet.sleepUp();
     }
 })
 

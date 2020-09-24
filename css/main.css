@@ -17,6 +17,18 @@ body {
     min-height: 100vh;
 }
 
+.lights_off {
+    display: block;
+    position: absolute;
+    background-color: black;
+    opacity: 80%;
+    z-index: 10;
+    min-height: 70%;
+    min-width: 80%;
+    top: 80px;
+    left: 155px;
+  }  
+
 img { 
     -webkit-user-drag: none; 
     -khtml-user-drag: none; 
@@ -211,6 +223,26 @@ header {
     top: 200px;
     animation-name: bounce;
     animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+.rip {
+    position: absolute;
+    max-width: 8%;
+    left: 780px;
+    top: 310px;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+}
+
+.game_over {
+    position: absolute;
+    left: 300px;
+    top: 300px;
+    z-index: 2;
+    animation: fadeIn;
+    animation-delay: 1s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
 }
 
