@@ -33,7 +33,7 @@ The screen should fade to white and fade back in with the egg gone and the chose
 
 The time should start ticking as a 24 hour clock, 1 real sec = 1 game min, age up every 5 game days.
 
-The meters should start gradually get shaded in every in game quarter day, which is 6 min (time needed to increment may change).
+The meters should start gradually get shaded in every in game quarter day, which is 6 min, time needed to increment may change.
 
 The sun should start gradually moving down and once it does, the background changes to night colors and the moon appears.
 
@@ -46,3 +46,11 @@ The feed button should spawn in food and decrement a hunger bar once it touches 
 The play button should spawn in a ball and bounce directly over your pokemon for a few seconds, decrement two boredom and increment one for sleepiness and hunger
 
 The sleep button should spawn in a house for your pet to sleep inside for 12 real world minutes, decrement two sleepiness
+
+### Game Over
+
+If any of the meters reach get filled up then the time should stop ticking.
+
+The tomoagotchi should get replaced with a tombstone.
+
+Put it on text in the middle of the screen.

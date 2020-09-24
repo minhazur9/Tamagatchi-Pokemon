@@ -85,6 +85,9 @@ function tick() {
             day = 0;
             myPet.ageUp();
         }
+        if (myPet.hunger === 10 || myPet.sleepiness === 10 || myPet.boredom === 10) {
+            gameOver(time);
+        }
     }, 1000)
 
 }
@@ -115,9 +118,6 @@ function cycle() {
 
 // Adjusts the time on the HUD
 function adjustTime() {
-    myPet.hungerUp();
-    myPet.sleepUp();
-    myPet.boredUp();
     if (min % 10 === 0) { // Keeps track of first minute digit
         min = 0;
         minTen++;
@@ -136,6 +136,10 @@ function adjustTime() {
         day++;
     }
     $('#time').text(`${hourTen}${hour}:${minTen}${min}`);
+}
+
+function gameOver(id) {
+    clearInterval(id);
 }
 
 //-----------------Event Listeners---------------------
@@ -197,7 +201,7 @@ $('#sleep').click(function () {
         let sleepTime = 0;
         let nap = setInterval(function () {
             sleepTime++;
-            if (sleepTime === 10) {
+            if (sleepTime === 720) {
                 $('.house').remove();
                 clearInterval(nap);
             }
