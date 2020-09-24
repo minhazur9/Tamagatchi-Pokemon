@@ -89,3 +89,13 @@
         visibility: hidden;
     }
 }
+
+@keyframes rise {
+    40% {
+       transform:translateY(100px);
+    }
+
+    100% {
+        top:-140px;
+    }
+}

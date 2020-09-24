@@ -151,9 +151,11 @@ function gameOver(id) {
     });
     $('.lights_off').remove();
     $('#screen').append('<img src="./images/rip.png" alt="Grave" class="rip">')
-    $('#screen').append('<h1 class="game_over">Game Over</h1>')
+    $('#screen').append('<h1 class="game_over">GAME OVER</h1>')
+    if (night === true) {
+        $('.game_over').addClass('night_text');
+    }
 }
-
 //-----------------Event Listeners---------------------
 
 // Click to start
@@ -172,6 +174,11 @@ $('#screen').on('click', function (event) {
 
 // Choose your pokemon
 $('#pokemon-list').on('click', 'li', function (event) {
+    $('#name').css({
+        'animation-name': 'drop',
+        'animation-duration': '1s',
+        'visibility': 'visible'
+    })
     let t = 0;
     myPet = new Pet();
     $('#pokemon-list li').css({ "animation-name": "fadeOut" });
@@ -199,7 +206,7 @@ $('#pokemon-list').on('click', 'li', function (event) {
 
 });
 
-$('#feed').click(function () {
+$('#feed').on("click", function () {
     $('.rare_candy').remove();
     if (myPet.hunger >= 1 && alive) {
         $('#screen').append('<img src="./images/rare_candy.png" alt="Rare Candy" class="rare_candy"></img>');
@@ -209,7 +216,7 @@ $('#feed').click(function () {
 
 })
 
-$('#sleep').click(function () {
+$('#sleep').on("click", function () {
     if (myPet.sleepiness >= 2 && alive) {
         let sleepTime = 0;
         let nap = setInterval(function () {
@@ -226,7 +233,7 @@ $('#sleep').click(function () {
     }
 })
 
-$('#play').click(function () {
+$('#play').click("click", function () {
     if (myPet.boredom >= 2 && alive) {
         $('.ball').remove();
         $('#screen').append('<img src="./images/pokeball.png" alt="Pokeball" class="ball"></img>');
@@ -236,4 +243,14 @@ $('#play').click(function () {
     }
 })
 
+$('#name').on("submit", function (e) {
+    e.preventDefault();
+    $(this).css({
+        "animation-name": "rise",
+        "animation-duration": "1.5s"
+    })
+    $name = $(`.name_text`).val();
+    $('.pet').append('<div class="name_tag"></div>');
+    $('.name_tag').text($name);
+});
 

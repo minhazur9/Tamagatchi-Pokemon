@@ -93,6 +93,18 @@ header {
     animation-iteration-count: 2;
 }
 
+.flash {
+    display: block;
+    position: absolute;
+    background-color: white;
+    opacity: 100%;
+    z-index: 10;
+    min-height: 70%;
+    min-width: 80%;
+    top: 80px;
+    left: 155px;
+}
+
 #ground {
     position: relative;
     border-top: 2px solid black;
@@ -240,10 +252,38 @@ header {
     left: 300px;
     top: 300px;
     z-index: 2;
-    animation: fadeIn;
-    animation-delay: 1s;
-    animation-duration: 1s;
+    animation-name: fadeIn;
+    animation-duration: 2s;
     animation-fill-mode: forwards;
 }
 
+.night_text {
+    color: white
+}
+
+#name {
+    position: absolute;
+    left: 300px;
+    font-size: 30px;
+    top: 100px;
+    visibility: hidden;
+    animation-fill-mode: forwards;
+}
+
+.name_text {
+    position: absolute;
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 1);
+    opacity: 40%;
+}
+
+label {
+    position: absolute;
+    font-size: 30px;
+    top: -40px;
+    left: -2px;
+    color: white;
+    white-space: nowrap;
+}
 

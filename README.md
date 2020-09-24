@@ -54,3 +54,9 @@ If any of the meters reach get filled up then the time should stop ticking.
 The tomoagotchi should get replaced with a tombstone.
 
 Put it on text in the middle of the screen.
+
+### Names
+
+The game should ask you to name your tomogotchi before it appears on screen.
+
+Once it does the name should appear above it.
