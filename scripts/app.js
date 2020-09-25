@@ -9,7 +9,8 @@ let topGap = 0; // Distance from the top of the screen
 let night = false;
 let alive = true;
 class Pet {
-    constructor(hunger = 0, age = 0, sleepiness = 0, boredom = 0) {
+    constructor(name= "", hunger = 0, age = 0, sleepiness = 0, boredom = 0) {
+        this.name = name;
         this.hunger = hunger;
         this.age = age;
         this.sleepiness = sleepiness;
@@ -86,7 +87,13 @@ function tick() {
         if (myPet.hunger === 10 || myPet.sleepiness === 10 || myPet.boredom === 10) {
             gameOver(time);
         }
-    }, 1)
+        if (myPet.age === 16) {
+            midEvolve();
+        }
+        if (myPet.age === 36) {
+            finalEvolve();
+        }
+    }, 100)
 
 }
 
@@ -156,6 +163,38 @@ function gameOver(id) {
         $('.game_over').addClass('night_text');
     }
 }
+
+function spawnPet(callback) {
+    callback();
+    $('.pet').detach().appendTo('#screen');
+
+}
+
+function hatchEgg() {
+    $("#egg").css({
+        "animation-name": "shake_and_fade",
+        "animation-duration": "2s"
+    });
+}
+
+function midEvolve() {
+    if ($('#charmander').is('img')) {
+        $('#charmander').remove();
+        $('#screen').append('<img src="./images/charmeleon.png" alt="Charmeleon" id="charmeleon" class="pet">');
+        $('.pet').append('<div class="name_tag"></div>');
+        $('.name_tag').text(myPet.name);
+    }
+}
+
+function finalEvolve() {
+    if ($('#charmeleon').is('img')) {
+        $('#charmelon').remove();
+        $('#screen').append('<img src="./images/charizard.png" alt="Charizard" id="charizard" class="pet">');
+        $('.pet').append('<div class="name_tag"></div>');
+        $('.name_tag').text(myPet.name);
+    }
+}
+
 //-----------------Event Listeners---------------------
 
 // Click to start
@@ -164,7 +203,7 @@ $('#screen').on('click', function (event) {
         "animation-name": "fadeOut",
         "animation-duration": "200ms"
     });
-    $('#screen').append('<img src="./images/sun.png" alt="The Sun" id="sun"></img>');
+    $('#screen').append('<img src="./images/sun.png" alt="The Sun" id="sun"></>');
     $('#pokemon-list').append('<li><img src="./images/bulbasaur.png" alt="Bulbsaur" id="bulbasaur"></img></li>');
     $('#pokemon-list').append('<li><img src="./images/squirtle.png" alt="Squirtle" id="squirtle"></img></li>');
     $('#pokemon-list').append('<li><img src="./images/charmander.png" alt="Chamander" id="charmander"></img></li>');
@@ -179,30 +218,13 @@ $('#pokemon-list').on('click', 'li', function (event) {
         'animation-duration': '1s',
         'visibility': 'visible'
     })
-    let t = 0;
     myPet = new Pet();
-    $('#pokemon-list li').css({ "animation-name": "fadeOut" });
     $(this).addClass('pet');
+    spawnPet(hatchEgg);
+    $('#pokemon-list li').css({ "animation-name": "fadeOut" });
     $('#start').remove();
     $('#screen').css({ "animation-name": "screen-fade" })
-    $("#egg").css({ "animation-name": "shake" });
-    animate = setInterval(function () {
-        t++;
-        if (t === 3) {
-            $('#egg').css({
-                "animation-name": "fadeOut",
-                "animation-duration": "200ms",
-            })
-        }
-        if (t === 4) {
-            $('.pet').detach().appendTo('#screen');
-        }
-        if (t === 5) {
-            $('#egg').remove();
-            tick();
-            clearInterval(animate);
-        }
-    }, 1000)
+    tick();
 
 });
 
@@ -243,14 +265,14 @@ $('#play').click("click", function () {
     }
 })
 
-$('#name').on("submit", function (e) {
-    e.preventDefault();
+$('#name').on("submit", function (event) {
+    event.preventDefault();
     $(this).css({
         "animation-name": "rise",
         "animation-duration": "1.5s"
     })
-    $name = $(`.name_text`).val();
+    myPet.name = $(`.name_text`).val();
     $('.pet').append('<div class="name_tag"></div>');
-    $('.name_tag').text($name);
+    $('.name_tag').text(myPet.name);
 });
 

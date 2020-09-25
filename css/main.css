@@ -179,6 +179,14 @@ header {
     margin-top:5px;
 }
 
+#charmeleon {
+    max-width: 70px;
+}
+
+#charizard {
+    max-width: 80px;
+}
+
 #start {
     position: absolute;
     top: 200px;
@@ -208,6 +216,7 @@ header {
     left: 780px;
     top: 380px;
     z-index: 3;
+    animation-fill-mode: forwards;
 }
 
 .rare_candy {
@@ -285,5 +294,11 @@ label {
     left: -2px;
     color: white;
     white-space: nowrap;
+}
+
+.name_tag {
+    position: absolute;
+    top: -35px;
+    color: white;
 }
 
