@@ -60,3 +60,19 @@ Put it on text in the middle of the screen.
 The game should ask you to name your tomogotchi before it appears on screen.
 
 Once it does the name should appear above it.
+
+### Moving around
+
+The tomogotchi should start moving back and forth.
+
+If it touches food it should disappear.
+
+If it touches a house, the tomogotchi should be hidden until its done sleeping.
+
+If it a ball appears it should jump.
+
+### Evolution
+
+After it reaches age 4 it should disappear and be replaced with another sprite.
+
+After it reaches age 9 it should disappear again and be replaced with an adult sprite.

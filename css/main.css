@@ -216,6 +216,8 @@ header {
     left: 780px;
     top: 380px;
     z-index: 3;
+    animation-name: fadeIn;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
 }
 

@@ -8,8 +8,9 @@ let realSec = 0; // Real world seconds
 let topGap = 0; // Distance from the top of the screen
 let night = false;
 let alive = true;
+let $pet;
 class Pet {
-    constructor(name= "", hunger = 0, age = 0, sleepiness = 0, boredom = 0) {
+    constructor(name = "", hunger = 0, age = 0, sleepiness = 0, boredom = 0) {
         this.name = name;
         this.hunger = hunger;
         this.age = age;
@@ -143,6 +144,7 @@ function adjustTime() {
     $('#time').text(`${hourTen}${hour}:${minTen}${min}`);
 }
 
+
 function gameOver(id) {
     clearInterval(id);
     alive = false;
@@ -164,10 +166,8 @@ function gameOver(id) {
     }
 }
 
-function spawnPet(callback) {
-    callback();
-    $('.pet').detach().appendTo('#screen');
-
+function spawnPet() {
+    $('#screen').append($pet);
 }
 
 function hatchEgg() {
@@ -188,7 +188,7 @@ function midEvolve() {
 
 function finalEvolve() {
     if ($('#charmeleon').is('img')) {
-        $('#charmelon').remove();
+        $('#charmeleon').remove();
         $('#screen').append('<img src="./images/charizard.png" alt="Charizard" id="charizard" class="pet">');
         $('.pet').append('<div class="name_tag"></div>');
         $('.name_tag').text(myPet.name);
@@ -218,13 +218,10 @@ $('#pokemon-list').on('click', 'li', function (event) {
         'animation-duration': '1s',
         'visibility': 'visible'
     })
+    $('#pokemon-list li').css({ "animation-name": "fadeOut" });
     myPet = new Pet();
     $(this).addClass('pet');
-    spawnPet(hatchEgg);
-    $('#pokemon-list li').css({ "animation-name": "fadeOut" });
-    $('#start').remove();
-    $('#screen').css({ "animation-name": "screen-fade" })
-    tick();
+    $pet = $(this);
 
 });
 
@@ -274,5 +271,11 @@ $('#name').on("submit", function (event) {
     myPet.name = $(`.name_text`).val();
     $('.pet').append('<div class="name_tag"></div>');
     $('.name_tag').text(myPet.name);
+    hatchEgg();
+    $('.pet').detach()
+    setTimeout(spawnPet,3500);
+    $('#start').remove();
+    $('#screen').css({ "animation-name": "screen-fade" })
+    tick();
 });
 
