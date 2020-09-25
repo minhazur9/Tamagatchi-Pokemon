@@ -9,6 +9,9 @@ let topGap = 0; // Distance from the top of the screen
 let night = false;
 let alive = true;
 let $pet;
+let movementX = 780;
+let movementY = 380
+
 class Pet {
     constructor(name = "", hunger = 0, age = 0, sleepiness = 0, boredom = 0) {
         this.name = name;
@@ -94,7 +97,7 @@ function tick() {
         if (myPet.age === 36) {
             finalEvolve();
         }
-    }, 100)
+    }, 300)
 
 }
 
@@ -168,6 +171,11 @@ function gameOver(id) {
 
 function spawnPet() {
     $('#screen').append($pet);
+    $($pet).css({
+        'animation-name': 'fadeIn',
+        'animation-duration': '1s'
+    })
+    move();
 }
 
 function hatchEgg() {
@@ -193,6 +201,24 @@ function finalEvolve() {
         $('.pet').append('<div class="name_tag"></div>');
         $('.name_tag').text(myPet.name);
     }
+}
+
+function move() {
+    let i = 0;
+    interval = setInterval(function () {
+        console.log(i);
+        i++;
+        movementX-=2
+        if (i === 5) {
+            movementY-=2
+            $($pet).animate({left: `${movementX}`, top: `${movementY}`});
+        }
+        if (i === 6) {
+            movementY+=2
+            $($pet).animate({left: `${movementX}`, top: `${movementY}`});
+            i = 4;
+        }
+    },800)
 }
 
 //-----------------Event Listeners---------------------
@@ -273,9 +299,10 @@ $('#name').on("submit", function (event) {
     $('.name_tag').text(myPet.name);
     hatchEgg();
     $('.pet').detach()
-    setTimeout(spawnPet,3500);
+    setTimeout(spawnPet, 3500);
     $('#start').remove();
     $('#screen').css({ "animation-name": "screen-fade" })
+    move();
     tick();
 });
 
