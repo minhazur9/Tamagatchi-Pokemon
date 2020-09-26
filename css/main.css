@@ -139,54 +139,6 @@ header {
     z-index: 1;
 }
 
-#pokemon-list {
-    position: absolute;
-    display: flex;
-    visibility: hidden;
-    justify-content: space-between;
-    top: 290px;
-    left: 660px;
-    animation-duration: 200ms; 
-    animation-fill-mode: forwards;
-    animation-duration: 1.7s;
-    animation-delay: 1s;
-}
-
-#pokemon-list li {
-    position: relative;
-    padding: 0 10px;
-    margin: 0 10px;
-    animation-duration: 200ms; 
-    animation-fill-mode :forwards
-}
-
-#pokemon-list li:hover {
-    border: 3px dashed red;
-    cursor: default;
-}
-
-#bulbasaur {
-    max-width: 65px;
-}
-
-#squirtle {
-    max-width: 60px;
-    margin-top:5px;
-}
-
-#charmander {
-    max-width: 60px;
-    margin-top:5px;
-}
-
-#charmeleon {
-    max-width: 70px;
-}
-
-#charizard {
-    max-width: 80px;
-}
-
 #start {
     position: absolute;
     top: 200px;
@@ -201,30 +153,11 @@ header {
     
 }
 
-#egg {
-    position: absolute;
-    max-width: 5%;
-    left: 780px;
-    top: 365px;
-    z-index: 3;
-    animation-duration: 2s;
-    animation-fill-mode: forwards
-}
-
-.pet {
-    position: absolute;
-    left: 780px;
-    top: 380px;
-    z-index: 3;
-    animation-fill-mode: forwards;
-}
-
 .rare_candy {
     position: absolute;
     max-width: 4%;
     z-index: 3;
     top: 400px;
-    left: 200px;
     animation-name: drop_candy;
     animation-duration: 1s;
 }
@@ -295,11 +228,5 @@ label {
     left: -2px;
     color: white;
     white-space: nowrap;
-}
-
-.name_tag {
-    position: absolute;
-    top: -35px;
-    color: white;
 }
 

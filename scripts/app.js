@@ -6,12 +6,16 @@ let hourTen = 0 // tenth digit for hour
 let day = 0; // days
 let realSec = 0; // Real world seconds
 let topGap = 0; // Distance from the top of the screen
-let night = false;
-let alive = true;
-let $pet;
-let movementX = 780;
-let movementY = 380;
+let night = false; // If its night time or not
+let alive = true; // If its alive or not
+let $pet; // The pet
+let $tag; // The name tag
+let movementX = 780; // Movement from left and right
+let movementY = 380; // Movement from up and down
+let speed = -20;
 
+
+// The tomagotchi
 class Pet {
     constructor(name = "", hunger = 0, age = 0, sleepiness = 0, boredom = 0) {
         this.name = name;
@@ -45,17 +49,20 @@ class Pet {
         $(`#bored li:nth-child(${this.boredom})`).css('background-color', 'red');
     }
 
+    // Decements hunger
     hungerDown() {
         $(`#hunger li:nth-child(${this.hunger})`).css('background-color', 'inherit');
         this.hunger--
     }
 
+    // Decrements sleepiness
     sleepDown() {
         $(`#sleepy li:nth-child(${this.sleepiness})`).css('background-color', 'inherit');
         $(`#sleepy li:nth-child(${this.sleepiness - 1})`).css('background-color', 'inherit');
         this.sleepiness -= 2;
     }
 
+    // Decrements boredome
     boredDown() {
         $(`#bored li:nth-child(${this.boredom})`).css('background-color', 'inherit');
         $(`#bored li:nth-child(${this.boredom - 1})`).css('background-color', 'inherit');
@@ -91,10 +98,10 @@ function tick() {
         if (myPet.hunger === 10 || myPet.sleepiness === 10 || myPet.boredom === 10) {
             gameOver(time);
         }
-        if (myPet.age === 16) {
+        if (myPet.age === 4) {
             midEvolve();
         }
-        if (myPet.age === 36) {
+        if (myPet.age === 9) {
             finalEvolve();
         }
     }, 300)
@@ -147,11 +154,11 @@ function adjustTime() {
     $('#time').text(`${hourTen}${hour}:${minTen}${min}`);
 }
 
-
+// Brings up the game over screen 
 function gameOver(id) {
     clearInterval(id);
     alive = false;
-    $('.pet').css({
+    $($pet).css({
         "animation-name": "fadeOut",
         "animation-duration": "1s",
         "animation-fill-mode": "forwards"
@@ -169,140 +176,10 @@ function gameOver(id) {
     }
 }
 
-function spawnPet() {
-    $('#screen').append($pet);
-    $($pet).css({
-        'animation-name': 'fadeIn',
-        'animation-duration': '1s'
-    })
-    move();
+function randomizerX() {
+    return Math.floor(Math.random() * (1000 - 200) + 200);
 }
 
-function hatchEgg() {
-    $("#egg").css({
-        "animation-name": "shake_and_fade",
-        "animation-duration": "2s"
-    });
-}
-
-function midEvolve() {
-    if ($('#charmander').is('img')) {
-        $('#charmander').remove();
-        $('#screen').append('<img src="./images/charmeleon.png" alt="Charmeleon" id="charmeleon" class="pet">');
-        $('.pet').append('<div class="name_tag"></div>');
-        $('.name_tag').text(myPet.name);
-    }
-}
-
-function finalEvolve() {
-    if ($('#charmeleon').is('img')) {
-        $('#charmeleon').remove();
-        $('#screen').append('<img src="./images/charizard.png" alt="Charizard" id="charizard" class="pet">');
-        $('.pet').append('<div class="name_tag"></div>');
-        $('.name_tag').text(myPet.name);
-    }
-}
-
-function move() {
-    let speed = -20;
-    wait = setInterval(function () {
-        $pet
-            .velocity({ left: `${movementX += speed}px`, top: `${movementY -= 15}px` }, { duration: 500 })
-            .velocity({ left: `${movementX += speed}px`, top: `${movementY += 15}px` }, { duration: 500 });
-        if(movementX < 20 || movementX > 1100) {
-            $pet.css({'transform' : `scaleX(${speed/20})`});
-            speed*=-1;
-        }
-    }, 1100)
-    if (!alive) {
-        clearInterval(wait);
-    }
 
 
-
-
-}
-//-----------------Event Listeners---------------------
-
-// Click to start
-$('#screen').on('click', function (event) {
-    $('#start').css({
-        "animation-name": "fadeOut",
-        "animation-duration": "200ms"
-    });
-    $('#screen').append('<img src="./images/sun.png" alt="The Sun" id="sun"></>');
-    $('#pokemon-list').append('<li><img src="./images/bulbasaur.png" alt="Bulbsaur" id="bulbasaur"></img></li>');
-    $('#pokemon-list').append('<li><img src="./images/squirtle.png" alt="Squirtle" id="squirtle"></img></li>');
-    $('#pokemon-list').append('<li><img src="./images/charmander.png" alt="Chamander" id="charmander"></img></li>');
-    $('#pokemon-list').css({ "animation-name": "drop" });
-    $('#screen').off('click');
-})
-
-// Choose your pokemon
-$('#pokemon-list').on('click', 'li', function (event) {
-    $('#name').css({
-        'animation-name': 'drop',
-        'animation-duration': '1s',
-        'visibility': 'visible'
-    })
-    $('#pokemon-list li').css({ "animation-name": "fadeOut" });
-    myPet = new Pet();
-    $(this).addClass('pet');
-    $pet = $(this);
-
-});
-
-$('#feed').on("click", function () {
-    $('.rare_candy').remove();
-    if (myPet.hunger >= 1 && alive) {
-        $('#screen').append('<img src="./images/rare_candy.png" alt="Rare Candy" class="rare_candy"></img>');
-        myPet.hungerDown();
-        myPet.sleepUp();
-    }
-
-})
-
-$('#sleep').on("click", function () {
-    if (myPet.sleepiness >= 2 && alive) {
-        let sleepTime = 0;
-        let nap = setInterval(function () {
-            sleepTime++;
-            if (sleepTime === 720) {
-                $('.house').remove();
-                clearInterval(nap);
-                $('.lights_off').remove();
-            }
-        }, 1000)
-        $('#screen').append('<img src="./images/house.png" alt="House" class="house"></img>');
-        $('body').append('<div class="lights_off"></div>')
-        myPet.sleepDown();
-    }
-})
-
-$('#play').click("click", function () {
-    if (myPet.boredom >= 2 && alive) {
-        $('.ball').remove();
-        $('#screen').append('<img src="./images/pokeball.png" alt="Pokeball" class="ball"></img>');
-        myPet.boredDown();
-        myPet.hungerUp();
-        myPet.sleepUp();
-    }
-})
-
-$('#name').on("submit", function (event) {
-    event.preventDefault();
-    $(this).css({
-        "animation-name": "rise",
-        "animation-duration": "1.5s"
-    })
-    myPet.name = $(`.name_text`).val();
-    $('.pet').append('<div class="name_tag"></div>');
-    $('.name_tag').text(myPet.name);
-    hatchEgg();
-    $('.pet').detach()
-    setTimeout(spawnPet, 3500);
-    $('#start').remove();
-    $('#screen').css({ "animation-name": "screen-fade" })
-    tick();
-});
 
