@@ -82,8 +82,8 @@ $('#name').on("submit", function (event) {
     $($tag).text(myPet.name);
     hatchEgg();
     $('.pet').detach()
-    setTimeout(spawnPet, 3500);
+    setTimeout(spawnPet, 2150);
     $('#start').remove();
-    $('#screen').css({ "animation-name": "screen-fade" })
+    $('body').append('<div class="flash"></div>')
     tick();
 });
