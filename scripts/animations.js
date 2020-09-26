@@ -19,54 +19,62 @@ function hatchEgg() {
 // The first evolution
 function midEvolve() {
     if ($('#charmander').is('img')) {
-        $($tag).detach();
-        $('#charmander').remove();
-        $('#screen').append('<img src="./images/charmeleon.png" alt="Charmeleon" id="charmeleon" class="pet">');
-        $pet = $('#charmeleon');
-        $($pet).append($tag);
-        
+        $('.flash').remove();
+        $('body').append('<div class="flash"></div>');
+        $('li').remove();
+        $('#screen').append('<li class="pet"><img src="./images/charmeleon.png" alt="Charmeleon" id="charmeleon"></li>');
+        $pet = $('#screen li.pet');
+        $($pet).append('<div class="name_tag"></div>');
+        $tag = $('.name_tag')
+        $($tag).text(myPet.name);
+        $($pet).css({ 'left': `${movementX}px` });
+        $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
+        myPet.stage++;
     }
 }
 
 // The second evolution
 function finalEvolve() {
     if ($('#charmeleon').is('img')) {
-        $($pet).detach();
-        $('#charmeleon').remove();
-        $('#screen').append('<img src="./images/charizard.png" alt="Charizard" id="charizard" class="pet">');
-        $pet = $('#charizard');
-        $($pet).append($tag);
+        $('.flash').remove();
+        $('body').append('<div class="flash"></div>');
+        $('li').remove();
+        $('#screen').append('<li class="pet"><img src="./images/charizard.png" alt="Charizard" id="charizard"></li>');
+        $pet = $('#screen li.pet');
+        $($pet).append('<div class="name_tag"></div>');
+        $tag = $('.name_tag')
+        $($tag).text(myPet.name);
+        $($pet).css({ 'left': `${movementX}px` });
+        $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
+        myPet.stage++;
     }
 }
 
 // Moves the tomogotochi across the screen back and forth
 function move() {
-    wait = setInterval(function () {
+    step = setInterval(function () {
         $pet
-            .velocity({ left: `${movementX += speed}px`, top: `${movementY -= 15}px` }, { duration: 500 })
-            .velocity({ left: `${movementX += speed}px`, top: `${movementY += 15}px` }, { duration: 500 });
-        if (movementX < 30 || movementX > 1060) {
+            .velocity({ left: `${movementX += speed}px`, top: `${movementY -= 15}px` }, { duration: 300 })
+            .velocity({ left: `${movementX += speed}px`, top: `${movementY += 15}px` }, { duration: 300 });
+        $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
+        $tag.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
+        setTimeout(function () {
+            if (movementX < 30 || movementX > 1060) {
+                speed *= -1;
+            }
+        }, 300)
 
-            speed *= -1;
-        }
-        if (speed > 0) {
-            $pet.css({ 'transform': `scaleX(-1)` });
-            $tag.css({ 'transform': `scaleX(-1)` });
-        }
-        else {
-            $pet.css({ 'transform': `scaleX(1)` });
-            $tag.css({ 'transform': `scaleX(1)` });
-        }
-
-        if ($('img').hasClass('rare_candy')){
-            if ($($pet).offset().left >= $('.rare_candy').offset().left - 20 && $($pet).offset().left <= $('.rare_candy').offset().left + 20) {
+        if ($('img').hasClass('rare_candy')) {
+            if ($($pet).offset().left >= $('.rare_candy').offset().left - 30 &&
+                $($pet).offset().left <= $('.rare_candy').offset().left + 30 &&
+                $($pet).offset().left >= $('.rare_candy').offset().left - 30) {
                 $('.rare_candy').remove();
                 myPet.hungerDown();
                 myPet.sleepUp();
             }
         }
         if (!alive) {
-            clearInterval(wait);
+            clearInterval(step);
         }
     }, 1000)
 

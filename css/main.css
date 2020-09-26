@@ -104,7 +104,7 @@ header {
     top: 80px;
     left: 155px;
     animation-name: flash;
-    animation-duration: 1s;
+    animation-duration: 800ms;
     animation-iteration-count: 3;
     animation-fill-mode: forwards;
 }

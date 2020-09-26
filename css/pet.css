@@ -39,11 +39,15 @@
 }
 
 #charmeleon {
-    max-width: 70px;
+    max-width: 80px;
+    animation-name: fadeIn;
+    animation-duration: 3s;
 }
 
 #charizard {
-    max-width: 80px;
+    max-width: 100px;
+    animation-name: fadeIn;
+    animation-duration: 3s;
 }
 
 #egg {

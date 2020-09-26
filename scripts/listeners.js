@@ -51,7 +51,7 @@ $('#sleep').on("click", function () {
                 clearInterval(nap);
                 $('.lights_off').remove();
             }
-        }, 1000)
+        }, 300)
         $('#screen').append('<img src="./images/house.png" alt="House" class="house"></img>');
         $('body').append('<div class="lights_off"></div>')
         myPet.sleepDown();

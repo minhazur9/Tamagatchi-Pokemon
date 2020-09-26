@@ -12,17 +12,18 @@ let $pet; // The pet
 let $tag; // The name tag
 let movementX = 780; // Movement from left and right
 let movementY = 380; // Movement from up and down
-let speed = -20;
+let speed = -30; // The speed that the character is moving
 
 
 // The tomagotchi
 class Pet {
-    constructor(name = "", hunger = 0, age = 0, sleepiness = 0, boredom = 0) {
+    constructor(name = "", hunger = 0, age = 0, sleepiness = 0, boredom = 0, stage = 1) {
         this.name = name;
         this.hunger = hunger;
         this.age = age;
         this.sleepiness = sleepiness;
         this.boredom = boredom;
+        this.stage = stage;
     }
 
     // Increments age
@@ -98,11 +99,15 @@ function tick() {
         if (myPet.hunger === 10 || myPet.sleepiness === 10 || myPet.boredom === 10) {
             gameOver(time);
         }
-        if (myPet.age === 4) {
+        if (myPet.age === 4 && myPet.stage === 1) {
+            clearInterval(step);
             midEvolve();
+            setTimeout(move, 2000);
         }
-        if (myPet.age === 9) {
+        if (myPet.age === 9 && myPet.stage === 2) {
+            clearInterval(step);
             finalEvolve();
+            setTimeout(move, 2000);
         }
     }, 300)
 
