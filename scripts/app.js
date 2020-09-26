@@ -10,7 +10,7 @@ let night = false;
 let alive = true;
 let $pet;
 let movementX = 780;
-let movementY = 380
+let movementY = 380;
 
 class Pet {
     constructor(name = "", hunger = 0, age = 0, sleepiness = 0, boredom = 0) {
@@ -204,23 +204,24 @@ function finalEvolve() {
 }
 
 function move() {
-    let i = 0;
-    interval = setInterval(function () {
-        console.log(i);
-        i++;
-        movementX-=2
-        if (i === 5) {
-            movementY-=2
-            $($pet).animate({left: `${movementX}`, top: `${movementY}`});
+    let speed = -20;
+    wait = setInterval(function () {
+        $pet
+            .velocity({ left: `${movementX += speed}px`, top: `${movementY -= 15}px` }, { duration: 500 })
+            .velocity({ left: `${movementX += speed}px`, top: `${movementY += 15}px` }, { duration: 500 });
+        if(movementX < 20 || movementX > 1100) {
+            $pet.css({'transform' : `scaleX(${speed/20})`});
+            speed*=-1;
         }
-        if (i === 6) {
-            movementY+=2
-            $($pet).animate({left: `${movementX}`, top: `${movementY}`});
-            i = 4;
-        }
-    },800)
-}
+    }, 1100)
+    if (!alive) {
+        clearInterval(wait);
+    }
 
+
+
+
+}
 //-----------------Event Listeners---------------------
 
 // Click to start
@@ -302,7 +303,6 @@ $('#name').on("submit", function (event) {
     setTimeout(spawnPet, 3500);
     $('#start').remove();
     $('#screen').css({ "animation-name": "screen-fade" })
-    move();
     tick();
 });
 
