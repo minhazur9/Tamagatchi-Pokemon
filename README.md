@@ -31,13 +31,13 @@ The screen should fade to white and fade back in with the egg gone and the chose
 
 ### After selection
 
-The time should start ticking as a 24 hour clock, 1 real sec = 1 game min, age up every 5 game days.
+The time should start ticking as a 24 hour clock, 1 real sec = 3 game min, age up every 4 game days.
 
 The meters should start gradually get shaded in every in game quarter day, which is 6 min, time needed to increment may change.
 
 The sun should start gradually moving down and once it does, the background changes to night colors and the moon appears.
 
-The moon should do the reverse and the switch should happen every 12 minutes.
+The moon should do the reverse and the switch should happen every 12 game minutes.
 
 ### The Buttons
 
@@ -45,7 +45,7 @@ The feed button should spawn in food and decrement a hunger bar once it touches 
 
 The play button should spawn in a ball and bounce directly over your pokemon for a few seconds, decrement two boredom and increment one for sleepiness and hunger
 
-The sleep button should spawn in a house for your pet to sleep inside for 12 real world minutes, decrement two sleepiness
+The sleep button should spawn in a house for your pet to sleep inside for until the meter goes to 0, decrement two sleepiness per real minute
 
 ### Game Over
 

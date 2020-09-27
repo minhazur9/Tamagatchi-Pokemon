@@ -80,6 +80,7 @@
     color: white;
     text-align: center;
     width: 100%;
+    z-index: 5;
 }
 
 .pet {

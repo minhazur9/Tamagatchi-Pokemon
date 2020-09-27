@@ -186,11 +186,11 @@ header {
 .ball {
     position: absolute;
     max-width: 3%;
-    left: 780px;
-    top: 200px;
-    animation-name: bounce;
-    animation-duration: 3s;
+    top: 190px;
+    animation-name: fadeIn;
+    animation-duration: 100ms;
     animation-fill-mode: forwards;
+    z-index: 5;
 }
 
 .rip {

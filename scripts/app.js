@@ -89,17 +89,19 @@ function tick() {
             cycle();
         }
         adjustTime();
-        if (realSec % 360 === 0 && realSec !== 0) { // Keeps track of meters
+        if (realSec % 180 === 0 && realSec !== 0) { // Keeps track of meters
             myPet.hungerUp();
             myPet.sleepUp();
             myPet.boredUp();
         }
-        if (day == 5 && day !== 0) { // Keeps track of age
+        if (day == 4) { // Keeps track of age
             day = 0;
             myPet.ageUp();
         }
         if (myPet.hunger === 10 || myPet.sleepiness === 10 || myPet.boredom === 10) {
-            gameOver(time);
+            gameOver();
+            clearInterval(time)
+            clearInterval(step);
         }
         if (myPet.age === 4 && myPet.stage === 1) {
             clearInterval(step);
@@ -162,8 +164,7 @@ function adjustTime() {
 }
 
 // Brings up the game over screen 
-function gameOver(id) {
-    clearInterval(id);
+function gameOver() {
     alive = false;
     $($pet).css({
         "animation-name": "fadeOut",

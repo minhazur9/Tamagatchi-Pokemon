@@ -126,9 +126,31 @@ function move() {
                 myPet.sleepUp();
             }
         }
-        if (!alive) {
-            clearInterval(step);
+
+        if ($('img').hasClass('house')) {
+            if ($($pet).offset().left >= $('.house').offset().left - 30 &&
+                $($pet).offset().left <= $('.house').offset().left + 30 &&
+                $($pet).offset().left >= $('.house').offset().left - 30) {
+                clearInterval(step);
+                $pet.hide();
+            }
         }
+
+        if ($('img').hasClass('ball')) {
+            clearInterval(step);
+            $pet
+                .velocity({ top: `${movementY -= 15}px` }, { duration: 200, delay: 380 })
+                .velocity({ top: `${movementY += 15}px` }, { duration: 200, delay: 350 })
+                .velocity({ top: `${movementY -= 15}px` }, { duration: 200, delay: 350 })
+                .velocity({ top: `${movementY += 15}px` }, { duration: 200, delay: 350 })
+                .velocity({ top: `${movementY -= 15}px` }, { duration: 200, delay: 350 })
+                .velocity({ top: `${movementY += 15}px` }, { duration: 200, delay: 350 })
+                setTimeout(function() {
+                    $('.ball').remove()
+                    move();
+                },5000)
+        }
+
     }, 1000)
 
 }

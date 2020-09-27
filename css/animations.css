@@ -74,6 +74,7 @@
     }
 }
 
+
 @keyframes bounce {
     25% {
         top:350px;
@@ -85,13 +86,8 @@
         transform: rotate(360deg);
         
     }
-    90% {
-        opacity: 100%;
-    }
     100% {
         transform: rotate(360deg);
-        opacity: 0%;
-        visibility: hidden;
     }
 }
 
