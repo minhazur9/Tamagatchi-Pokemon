@@ -2,7 +2,6 @@
 
 // Click to start
 $('#screen').on('click', function (event) {
-    $("#mysoundclip").play();
     $('#start').css({
         "animation-name": "fadeOut",
         "animation-duration": "200ms"
@@ -31,7 +30,7 @@ $('#pokemon-list').on('click', 'li', function (event) {
 // The feed button
 $('#feed').on("click", function () {
     $('.rare_candy').remove();
-    if (myPet.hunger >= 1 && alive) {
+    if (myPet.hunger >= 1 && !($('img').hasClass('house')) && alive) {
         let random = randomizerX();
         $('#screen').append('<img src="./images/rare_candy.png" alt="Rare Candy" class="rare_candy"></img>');
         $('.rare_candy').css({ 'left': `${random}px` })
@@ -41,7 +40,7 @@ $('#feed').on("click", function () {
 
 // The sleep button
 $('#sleep').on("click", function () {
-    if (myPet.sleepiness >= 2) {
+    if (myPet.sleepiness >= 2 && !($('img').hasClass('house')) && alive) {
         $('.lights_off').remove();
         myPet.boredUp();
         myPet.boredUp();
@@ -67,7 +66,7 @@ $('#sleep').on("click", function () {
 
 // The play button
 $('#play').click("click", function () {
-    if (myPet.boredom >= 2 && alive) {
+    if (myPet.boredom >= 2 && !($('img').hasClass('house')) && alive) {
         $('.ball').remove();
         $('#screen').append('<img src="./images/pokeball.png" alt="Pokeball" class="ball"></img>');
         if (speed < 0) {
@@ -77,12 +76,12 @@ $('#play').click("click", function () {
             $('.ball').css({ 'left': `${movementX + 75}px` });
         }
         $('.ball')
-            .velocity({top:`${movementY-38}px`,rotateZ: '180deg'},{duration: 500, delay: 1500})
-            .velocity({top:'190px',rotateZ: '360deg'},{duration: 500})
-            .velocity({top:`${movementY-38}px`,rotateZ: '540deg'},{duration: 500})
-            .velocity({top:'190px',rotateZ: '720deg'},{duration: 500})
-            .velocity({top:`${movementY-38}px`,rotateZ: '900deg'},{duration: 500})
-            .velocity({top:'190px',rotateZ: '1080deg'},{duration: 500});
+            .velocity({ top: `${movementY - 38}px`, rotateZ: '180deg' }, { duration: 500, delay: 1500 })
+            .velocity({ top: '190px', rotateZ: '360deg' }, { duration: 500 })
+            .velocity({ top: `${movementY - 38}px`, rotateZ: '540deg' }, { duration: 500 })
+            .velocity({ top: '190px', rotateZ: '720deg' }, { duration: 500 })
+            .velocity({ top: `${movementY - 38}px`, rotateZ: '900deg' }, { duration: 500 })
+            .velocity({ top: '190px', rotateZ: '1080deg' }, { duration: 500 });
 
         myPet.boredDown();
         myPet.hungerUp();
