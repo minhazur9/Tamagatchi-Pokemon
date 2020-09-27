@@ -22,7 +22,6 @@ $('#pokemon-list').on('click', 'li', function (event) {
         'visibility': 'visible'
     })
     $('#pokemon-list li').css({ "animation-name": "fadeOut" });
-    myPet = new Pet();
     $(this).addClass('pet');
     $pet = $(this);
 
@@ -46,7 +45,10 @@ $('#sleep').on("click", function () {
         let sleepTime = 0;
         let nap = setInterval(function () {
             sleepTime++;
-            if (sleepTime === 720) {
+            if (sleepTime % 180 === 0 && sleepTime !== 0) {
+                myPet.sleepDown();
+            }
+            if (myPet.sleepiness === 0) {
                 $('.house').remove();
                 clearInterval(nap);
                 $('.lights_off').remove();
@@ -54,7 +56,6 @@ $('#sleep').on("click", function () {
         }, 300)
         $('#screen').append('<img src="./images/house.png" alt="House" class="house"></img>');
         $('body').append('<div class="lights_off"></div>')
-        myPet.sleepDown();
     }
 })
 

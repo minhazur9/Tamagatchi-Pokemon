@@ -180,7 +180,7 @@ header {
     max-width: 10%;
     left: 500px;
     top: 350px;
-    z-index: 3;
+    z-index: 5;
 }
 
 .ball {

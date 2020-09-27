@@ -73,6 +73,8 @@ class Pet {
 
 }
 
+myPet = new Pet();
+
 
 
 
