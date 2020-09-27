@@ -28,6 +28,14 @@
     max-width: 65px;
 }
 
+#ivysaur {
+    max-width: 80px;
+}
+
+#venasaur {
+    max-width: 120px;
+}
+
 #squirtle {
     max-width: 60px;
     margin-top:5px;
@@ -39,13 +47,13 @@
 }
 
 #charmeleon {
-    max-width: 80px;
+    max-width: 75px;
     animation-name: fadeIn;
     animation-duration: 3s;
 }
 
 #charizard {
-    max-width: 100px;
+    max-width: 120px;
     animation-name: fadeIn;
     animation-duration: 3s;
 }
@@ -64,12 +72,14 @@
     position: absolute;
     top: -35px;
     color: white;
+    text-align: center;
+    width: 100%;
 }
 
 .pet {
     position: absolute;
     left: 780px;
     top: 380px;
-    z-index: 3;
+    z-index: 4;
     animation-fill-mode: forwards;
 }

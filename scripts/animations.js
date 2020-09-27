@@ -5,6 +5,7 @@ function spawnPet() {
         'animation-name': 'fadeIn',
         'animation-duration': '1s'
     })
+    $("#pokemon-list li").remove();
     move();
 }
 
@@ -21,8 +22,21 @@ function midEvolve() {
     if ($('#charmander').is('img')) {
         $('.flash').remove();
         $('body').append('<div class="flash"></div>');
-        $('li').remove();
+        $($pet).remove();
         $('#screen').append('<li class="pet"><img src="./images/charmeleon.png" alt="Charmeleon" id="charmeleon"></li>');
+        $pet = $('#screen li.pet');
+        $($pet).append('<div class="name_tag"></div>');
+        $tag = $('.name_tag')
+        $($tag).text(myPet.name);
+        $($pet).css({ 'left': `${movementX}px` });
+        $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
+        myPet.stage++;
+    }
+    else if ($('#bulbasaur').is('img')) {
+        $('.flash').remove();
+        $('body').append('<div class="flash"></div>');
+        $($pet).remove();
+        $('#screen').append('<li class="pet"><img src="./images/ivysaur.png" alt="Ivysaur" id="ivysaur"></li>');
         $pet = $('#screen li.pet');
         $($pet).append('<div class="name_tag"></div>');
         $tag = $('.name_tag')
@@ -38,8 +52,21 @@ function finalEvolve() {
     if ($('#charmeleon').is('img')) {
         $('.flash').remove();
         $('body').append('<div class="flash"></div>');
-        $('li').remove();
+        $($pet).remove();
         $('#screen').append('<li class="pet"><img src="./images/charizard.png" alt="Charizard" id="charizard"></li>');
+        $pet = $('#screen li.pet');
+        $($pet).append('<div class="name_tag"></div>');
+        $tag = $('.name_tag')
+        $($tag).text(myPet.name);
+        $($pet).css({ 'left': `${movementX}px` });
+        $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
+        myPet.stage++;
+    }
+    else if ($('#ivysaur').is('img')) {
+        $('.flash').remove();
+        $('body').append('<div class="flash"></div>');
+        $($pet).remove();
+        $('#screen').append('<li class="pet"><img src="./images/venasaur.png" alt="Venasaur" id="venasaur"></li>');
         $pet = $('#screen li.pet');
         $($pet).append('<div class="name_tag"></div>');
         $tag = $('.name_tag')
