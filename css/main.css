@@ -75,7 +75,16 @@ header {
     padding-top: 35px;
     font-size: 40px;
     cursor: pointer;
-    /* filter: drop-shadow(5px 5px 2px black); */
+    filter: drop-shadow(5px 5px 2px black);
+}
+
+.button:hover {
+    background-color: rgb(163, 161, 161);
+}
+
+.button:active {
+    transform: translate(5px,5px);
+    filter: none;
 }
 
 

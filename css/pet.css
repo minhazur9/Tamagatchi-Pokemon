@@ -41,6 +41,15 @@
     margin-top:5px;
 }
 
+#wartortle {
+    max-width: 75px;
+    margin-top:5px;
+}
+
+#blastoise {
+    max-width: 120px;
+}
+
 #charmander {
     max-width: 60px;
     margin-top:5px;
@@ -48,14 +57,10 @@
 
 #charmeleon {
     max-width: 75px;
-    animation-name: fadeIn;
-    animation-duration: 3s;
 }
 
 #charizard {
     max-width: 120px;
-    animation-name: fadeIn;
-    animation-duration: 3s;
 }
 
 #egg {
@@ -82,4 +87,6 @@
     top: 380px;
     z-index: 4;
     animation-fill-mode: forwards;
+    animation-name: fadeIn;
+    animation-duration: 3s;
 }

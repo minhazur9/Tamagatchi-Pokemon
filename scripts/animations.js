@@ -45,6 +45,19 @@ function midEvolve() {
         $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
         myPet.stage++;
     }
+    else {
+        $('.flash').remove();
+        $('body').append('<div class="flash"></div>');
+        $($pet).remove();
+        $('#screen').append('<li class="pet"><img src="./images/wartortle.png" alt="Wartortle" id="wartortle"></li>');
+        $pet = $('#screen li.pet');
+        $($pet).append('<div class="name_tag"></div>');
+        $tag = $('.name_tag')
+        $($tag).text(myPet.name);
+        $($pet).css({ 'left': `${movementX}px` });
+        $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
+        myPet.stage++;
+    }
 }
 
 // The second evolution
@@ -67,6 +80,19 @@ function finalEvolve() {
         $('body').append('<div class="flash"></div>');
         $($pet).remove();
         $('#screen').append('<li class="pet"><img src="./images/venasaur.png" alt="Venasaur" id="venasaur"></li>');
+        $pet = $('#screen li.pet');
+        $($pet).append('<div class="name_tag"></div>');
+        $tag = $('.name_tag')
+        $($tag).text(myPet.name);
+        $($pet).css({ 'left': `${movementX}px` });
+        $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
+        myPet.stage++;
+    }
+    else {
+        $('.flash').remove();
+        $('body').append('<div class="flash"></div>');
+        $($pet).remove();
+        $('#screen').append('<li class="pet"><img src="./images/blastoise.png" alt="Blastoise" id="blastoise"></li>');
         $pet = $('#screen li.pet');
         $($pet).append('<div class="name_tag"></div>');
         $tag = $('.name_tag')
