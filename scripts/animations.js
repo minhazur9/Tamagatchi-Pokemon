@@ -160,6 +160,7 @@ function eat() {
         $pet.offset().top <= $('.rare_candy').offset().top + 30) {
         $('.rare_candy').remove();
         myPet.hungerDown();
+        myPet.hungerDown();
         myPet.sleepUp();
     }
 }
