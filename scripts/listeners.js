@@ -48,10 +48,11 @@ $('#sleep').on("click", function () {
         $('.lights_off').remove();
         myPet.boredUp();
         myPet.boredUp();
+        myPet.hungerUp();
         let sleepTime = 0;
         let nap = setInterval(function () {
             sleepTime++;
-            if (sleepTime % 90 === 0 && sleepTime !== 0) {
+            if (sleepTime % 45 === 0 && sleepTime !== 0) {
                 myPet.sleepDown();
             }
             if (myPet.sleepiness === 0) {
@@ -116,6 +117,7 @@ $('#name').on("submit", function (event) {
     setTimeout(spawnPet, 2150);
     $('#start').remove();
     $('body').append('<div class="flash"></div>')
+    meterRandomizer();
     tick();
 });
 

@@ -62,8 +62,7 @@ class Pet {
     // Decrements sleepiness
     sleepDown() {
         $(`#sleepy li:nth-child(${this.sleepiness})`).css('background-color', 'inherit');
-        $(`#sleepy li:nth-child(${this.sleepiness - 1})`).css('background-color', 'inherit');
-        this.sleepiness -= 2;
+        this.sleepiness--;
     }
 
     // Decrements boredome
@@ -183,7 +182,7 @@ function adjustTime() {
 
 // Brings up the game over screen 
 function gameOver() {
-    $($pet).css({
+    $pet.css({
         "animation-name": "fadeOut",
         "animation-duration": "1s",
         "animation-fill-mode": "forwards"
@@ -218,6 +217,23 @@ function randomizerX() {
     return Math.floor(Math.random() * (1000 - 200) + 200);
 }
 
+// Randomizes the meter values
+function meterRandomizer() {
+    let randHunger = Math.floor(Math.random() * 5);
+    let randSleep = Math.floor(Math.random() * 5); 
+    let randBored = Math.floor(Math.random() * 5);
+    for(let i = 1; i <= randHunger; i++) {
+        myPet.hungerUp();
+    }
+    for(let j = 1; j <= randSleep; j++) {
+        myPet.sleepUp();
+    }
+    for(let k = 1; k <= randBored; k++) {
+        myPet.boredUp();
+    }
+}
+
+// Its to make buttons glow red when they shouldn't be available
 function dontWork(id) {
     $(id)
         .velocity({ backgroundColor: "#ff0000" }, { duration: 250 })

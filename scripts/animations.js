@@ -1,7 +1,7 @@
 // Spawn the tomagotchi
 function spawnPet() {
     $('#screen').append($pet);
-    $($pet).css({
+    $pet.css({
         'animation-name': 'fadeIn',
         'animation-duration': '1s'
     })
@@ -22,39 +22,39 @@ function midEvolve() {
     if ($('#charmander').is('img')) {
         $('.flash').remove();
         $('body').append('<div class="flash"></div>');
-        $($pet).remove();
+        $pet.remove();
         $('#screen').append('<li class="pet"><img src="./images/charmeleon.png" alt="Charmeleon" id="charmeleon"></li>');
         $pet = $('#screen li.pet');
-        $($pet).append('<div class="name_tag"></div>');
+        $pet.append('<div class="name_tag"></div>');
         $tag = $('.name_tag')
-        $($tag).text(myPet.name);
-        $($pet).css({ 'left': `${movementX}px` });
+        $tag.text(myPet.name);
+        $pet.css({ 'left': `${movementX}px` });
         $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
         myPet.stage++;
     }
     else if ($('#bulbasaur').is('img')) {
         $('.flash').remove();
         $('body').append('<div class="flash"></div>');
-        $($pet).remove();
+        $pet.remove();
         $('#screen').append('<li class="pet"><img src="./images/ivysaur.png" alt="Ivysaur" id="ivysaur"></li>');
         $pet = $('#screen li.pet');
-        $($pet).append('<div class="name_tag"></div>');
+        $pet.append('<div class="name_tag"></div>');
         $tag = $('.name_tag')
-        $($tag).text(myPet.name);
-        $($pet).css({ 'left': `${movementX}px` });
+        $tag.text(myPet.name);
+        $pet.css({ 'left': `${movementX}px` });
         $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
         myPet.stage++;
     }
     else {
         $('.flash').remove();
         $('body').append('<div class="flash"></div>');
-        $($pet).remove();
+        $pet.remove();
         $('#screen').append('<li class="pet"><img src="./images/wartortle.png" alt="Wartortle" id="wartortle"></li>');
         $pet = $('#screen li.pet');
-        $($pet).append('<div class="name_tag"></div>');
+        $pet.append('<div class="name_tag"></div>');
         $tag = $('.name_tag')
-        $($tag).text(myPet.name);
-        $($pet).css({ 'left': `${movementX}px` });
+        $tag.text(myPet.name);
+        $pet.css({ 'left': `${movementX}px` });
         $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
         myPet.stage++;
     }
@@ -65,39 +65,39 @@ function finalEvolve() {
     if ($('#charmeleon').is('img')) {
         $('.flash').remove();
         $('body').append('<div class="flash"></div>');
-        $($pet).remove();
+        $pet.remove();
         $('#screen').append('<li class="pet"><img src="./images/charizard.png" alt="Charizard" id="charizard"></li>');
         $pet = $('#screen li.pet');
-        $($pet).append('<div class="name_tag"></div>');
+        $pet.append('<div class="name_tag"></div>');
         $tag = $('.name_tag')
-        $($tag).text(myPet.name);
-        $($pet).css({ 'left': `${movementX}px` });
+        $tag.text(myPet.name);
+        $pet.css({ 'left': `${movementX}px` });
         $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
         myPet.stage++;
     }
     else if ($('#ivysaur').is('img')) {
         $('.flash').remove();
         $('body').append('<div class="flash"></div>');
-        $($pet).remove();
+        $pet.remove();
         $('#screen').append('<li class="pet"><img src="./images/venasaur.png" alt="Venasaur" id="venasaur"></li>');
         $pet = $('#screen li.pet');
-        $($pet).append('<div class="name_tag"></div>');
+        $pet.append('<div class="name_tag"></div>');
         $tag = $('.name_tag')
-        $($tag).text(myPet.name);
-        $($pet).css({ 'left': `${movementX}px` });
+        $tag.text(myPet.name);
+        $pet.css({ 'left': `${movementX}px` });
         $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
         myPet.stage++;
     }
     else {
         $('.flash').remove();
         $('body').append('<div class="flash"></div>');
-        $($pet).remove();
+        $pet.remove();
         $('#screen').append('<li class="pet"><img src="./images/blastoise.png" alt="Blastoise" id="blastoise"></li>');
         $pet = $('#screen li.pet');
-        $($pet).append('<div class="name_tag"></div>');
+        $pet.append('<div class="name_tag"></div>');
         $tag = $('.name_tag')
-        $($tag).text(myPet.name);
-        $($pet).css({ 'left': `${movementX}px` });
+        $tag.text(myPet.name);
+        $pet.css({ 'left': `${movementX}px` });
         $pet.css({ 'transform': `scaleX(${(speed / 30) * -1})` });
         myPet.stage++;
     }
@@ -154,9 +154,10 @@ function jump() {
 
 // Eats food
 function eat() {
-    if ($($pet).offset().left >= $('.rare_candy').offset().left - 30 &&
-        $($pet).offset().left <= $('.rare_candy').offset().left + 30 &&
-        $($pet).offset().left >= $('.rare_candy').offset().left - 30) {
+    if ($pet.offset().left >= $('.rare_candy').offset().left - 30 &&
+        $pet.offset().left <= $('.rare_candy').offset().left + 30 &&
+        $pet.offset().top >= $('.rare_candy').offset().top - 30 &&
+        $pet.offset().top <= $('.rare_candy').offset().top + 30) {
         $('.rare_candy').remove();
         myPet.hungerDown();
         myPet.sleepUp();
@@ -165,9 +166,7 @@ function eat() {
 
 // Disappears inside house
 function goInsideHouse() {
-    if ($($pet).offset().left >= $('.house').offset().left - 30 &&
-        $($pet).offset().left <= $('.house').offset().left + 30 &&
-        $($pet).offset().left >= $('.house').offset().left - 30) {
+    if ($pet.offset().left >= $('.house').offset().left - 30 && $pet.offset().left <= $('.house').offset().left + 30) {
         clearInterval(step);
         $pet.hide();
     }
