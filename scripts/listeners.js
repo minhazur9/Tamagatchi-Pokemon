@@ -61,7 +61,7 @@ $('#sleep').on("click", function () {
         asleep = !asleep;
         let nap = setInterval(function () {
             sleepTime++;
-            if (sleepTime % 45 === 0 && sleepTime !== 0) {
+            if (sleepTime % 25 === 0 && sleepTime !== 0) {
                 myPet.sleepDown();
             }
             if (myPet.sleepiness === 0) {
