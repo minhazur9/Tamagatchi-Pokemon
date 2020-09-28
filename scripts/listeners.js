@@ -32,7 +32,7 @@ $('#feed').on("click", function () {
     $('.rare_candy').remove();
     $('#feed').removeClass('red');
     let $brock = $('#jelly')[0];
-    if (myPet.hunger >= 1 && !($('img').hasClass('house')) && alive && paused === false) {
+    if (myPet.hunger >= 2 && !($('img').hasClass('house')) && alive && paused === false) {
         let random = randomizerX();
         let chance = Math.random();
         if (chance <= 0.05) {
