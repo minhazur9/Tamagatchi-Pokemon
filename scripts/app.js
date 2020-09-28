@@ -13,6 +13,8 @@ let $tag; // The name tag
 let movementX = 780; // Movement from left and right
 let movementY = 380; // Movement from up and down
 let speed = -30; // The speed that the character is moving
+let paused = false; //If game is paused or not
+let step = null; //Id for movement interval
 
 
 // The tomagotchi
@@ -73,7 +75,7 @@ class Pet {
 
 }
 
-myPet = new Pet();
+myPet = new Pet(); //Generates the pet
 
 
 
@@ -85,6 +87,9 @@ function tick() {
     let time = setInterval(function () {
         min++;
         realSec++;
+        if(paused === true) {
+            clearInterval(time);
+        }
         if (realSec % 2 === 0 && realSec !== 0) {
             cycle();
         }
@@ -184,10 +189,16 @@ function gameOver() {
     }
 }
 
+// Randomly selects a number for the x coordinate
 function randomizerX() {
     return Math.floor(Math.random() * (1000 - 200) + 200);
 }
 
+function dontWork(id) {
+    $(id)
+        .velocity({ backgroundColor: "#ff0000" },{duration:250})
+        .velocity({ backgroundColor: "#dddddd" },{duration:250})
+}
 
 
 

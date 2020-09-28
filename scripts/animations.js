@@ -106,6 +106,9 @@ function finalEvolve() {
 // Moves the tomogotochi across the screen back and forth
 function move() {
     step = setInterval(function () {
+        if (paused === true) {
+            clearInterval(step);
+        }
         $pet
             .velocity({ left: `${movementX += speed}px`, top: `${movementY -= 15}px` }, { duration: 300 })
             .velocity({ left: `${movementX += speed}px`, top: `${movementY += 15}px` }, { duration: 300 });
@@ -118,39 +121,54 @@ function move() {
         }, 300)
 
         if ($('img').hasClass('rare_candy')) {
-            if ($($pet).offset().left >= $('.rare_candy').offset().left - 30 &&
-                $($pet).offset().left <= $('.rare_candy').offset().left + 30 &&
-                $($pet).offset().left >= $('.rare_candy').offset().left - 30) {
-                $('.rare_candy').remove();
-                myPet.hungerDown();
-                myPet.sleepUp();
-            }
+            eat();
         }
 
         if ($('img').hasClass('house')) {
-            if ($($pet).offset().left >= $('.house').offset().left - 30 &&
-                $($pet).offset().left <= $('.house').offset().left + 30 &&
-                $($pet).offset().left >= $('.house').offset().left - 30) {
-                clearInterval(step);
-                $pet.hide();
-            }
+            goInsideHouse();
         }
 
         if ($('img').hasClass('ball')) {
             clearInterval(step);
-            $pet
-                .velocity({ top: `${movementY -= 15}px` }, { duration: 200, delay: 380 })
-                .velocity({ top: `${movementY += 15}px` }, { duration: 200, delay: 350 })
-                .velocity({ top: `${movementY -= 15}px` }, { duration: 200, delay: 350 })
-                .velocity({ top: `${movementY += 15}px` }, { duration: 200, delay: 350 })
-                .velocity({ top: `${movementY -= 15}px` }, { duration: 200, delay: 350 })
-                .velocity({ top: `${movementY += 15}px` }, { duration: 200, delay: 350 })
-                setTimeout(function() {
-                    $('.ball').remove()
-                    move();
-                },5000)
+            jump();
+            setTimeout(function () {
+                $('.ball').remove()
+                move();
+            }, 5000)
         }
 
     }, 1000)
 
+}
+
+// The animation for jump
+function jump() {
+    $pet
+        .velocity({ top: `${movementY -= 15}px` }, { duration: 200, delay: 380 })
+        .velocity({ top: `${movementY += 15}px` }, { duration: 200, delay: 350 })
+        .velocity({ top: `${movementY -= 15}px` }, { duration: 200, delay: 350 })
+        .velocity({ top: `${movementY += 15}px` }, { duration: 200, delay: 350 })
+        .velocity({ top: `${movementY -= 15}px` }, { duration: 200, delay: 350 })
+        .velocity({ top: `${movementY += 15}px` }, { duration: 200, delay: 350 })
+}
+
+// Eats food
+function eat() {
+    if ($($pet).offset().left >= $('.rare_candy').offset().left - 30 &&
+        $($pet).offset().left <= $('.rare_candy').offset().left + 30 &&
+        $($pet).offset().left >= $('.rare_candy').offset().left - 30) {
+        $('.rare_candy').remove();
+        myPet.hungerDown();
+        myPet.sleepUp();
+    }
+}
+
+// Disappears inside house
+function goInsideHouse() {
+    if ($($pet).offset().left >= $('.house').offset().left - 30 &&
+        $($pet).offset().left <= $('.house').offset().left + 30 &&
+        $($pet).offset().left >= $('.house').offset().left - 30) {
+        clearInterval(step);
+        $pet.hide();
+    }
 }

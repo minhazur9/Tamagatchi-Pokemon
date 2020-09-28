@@ -123,5 +123,14 @@
     }
 }
 
+@keyframes red {
+    0%,100% {
+        background-color: #DDDDDD;
+    }
+    50% {
+        background-color: red;
+    }
+}
+
 
 

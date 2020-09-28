@@ -30,10 +30,14 @@ $('#pokemon-list').on('click', 'li', function (event) {
 // The feed button
 $('#feed').on("click", function () {
     $('.rare_candy').remove();
+    $('#feed').removeClass('red');
     if (myPet.hunger >= 1 && !($('img').hasClass('house')) && alive) {
         let random = randomizerX();
         $('#screen').append('<img src="./images/rare_candy.png" alt="Rare Candy" class="rare_candy"></img>');
         $('.rare_candy').css({ 'left': `${random}px` })
+    }
+    else {
+        dontWork(this);
     }
 
 })
@@ -62,10 +66,13 @@ $('#sleep').on("click", function () {
         $('body').append('<div class="lights_off"></div>')
 
     }
+    else {
+        dontWork(this);
+    }
 })
 
 // The play button
-$('#play').click("click", function () {
+$('#play').on("click", function () {
     if (myPet.boredom >= 2 && !($('img').hasClass('house')) && alive) {
         $('.ball').remove();
         $('#screen').append('<img src="./images/pokeball.png" alt="Pokeball" class="ball"></img>');
@@ -87,6 +94,10 @@ $('#play').click("click", function () {
         myPet.hungerUp();
         myPet.hungerUp();
     }
+    else {
+        dontWork(this);
+    }
+
 })
 
 // Name your tomogotchi
@@ -107,3 +118,16 @@ $('#name').on("submit", function (event) {
     $('body').append('<div class="flash"></div>')
     tick();
 });
+
+
+//Pause the game
+$('#pause').on('click', function () {
+    if (step != null) {
+        paused = !paused;
+        if (paused === false) {
+            move();
+            tick();
+        }
+    }
+
+})
