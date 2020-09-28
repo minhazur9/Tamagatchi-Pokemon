@@ -1,4 +1,3 @@
-![GA logo](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)
 # Project #0: The Game
 
 ## User Stories
@@ -78,3 +77,9 @@ After it reaches age 4 it should disappear and be replaced with another sprite.
 After it reaches age 9 it should disappear again and be replaced with an adult sprite.
 
 The screen should start flashing and the character should stop moving briefly.
+
+### WireFrames
+
+[Start](./wireframes/start.png)
+
+[Night](./wireframes/night.png)
