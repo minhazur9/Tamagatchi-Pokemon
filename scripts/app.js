@@ -16,6 +16,7 @@ let speed = -30; // The speed that the character is moving
 let paused = false; //If game is paused or not
 let step = null; //Id for movement interval
 let daysCount = 0 // Total days
+let asleep = false;
 
 
 // The tomagotchi
@@ -97,9 +98,11 @@ function tick() {
             }
         }
         adjustTime();
-        if (realSec % 180 === 0 && realSec !== 0) { // Keeps track of meters
+        if (realSec % 90 === 0 && realSec !== 0) { // Keeps track of meters
             myPet.hungerUp();
-            myPet.sleepUp();
+            if(asleep == false) {
+                myPet.sleepUp();
+            }
             myPet.boredUp();
         }
         if (day == 4) { // Keeps track of age

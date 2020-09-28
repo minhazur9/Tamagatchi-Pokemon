@@ -31,9 +31,17 @@ $('#pokemon-list').on('click', 'li', function (event) {
 $('#feed').on("click", function () {
     $('.rare_candy').remove();
     $('#feed').removeClass('red');
+    let $brock = $('#jelly')[0];
     if (myPet.hunger >= 1 && !($('img').hasClass('house')) && alive && paused === false) {
         let random = randomizerX();
-        $('#screen').append('<img src="./images/rare_candy.png" alt="Rare Candy" class="rare_candy"></img>');
+        let chance = Math.random();
+        if (chance <= 0.05) {
+            $('#screen').append('<img src="./images/cake.png" alt="Jelly Filled Donut" class="rare_candy"></img>');
+            $brock.play();
+        }
+        else {
+            $('#screen').append('<img src="./images/rare_candy.png" alt="Rare Candy" class="rare_candy"></img>');
+        }
         $('.rare_candy').css({ 'left': `${random}px` })
     }
     else {
@@ -50,6 +58,7 @@ $('#sleep').on("click", function () {
         myPet.boredUp();
         myPet.hungerUp();
         let sleepTime = 0;
+        asleep = !asleep;
         let nap = setInterval(function () {
             sleepTime++;
             if (sleepTime % 45 === 0 && sleepTime !== 0) {
