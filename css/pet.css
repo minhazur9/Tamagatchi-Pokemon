@@ -1,3 +1,4 @@
+/* The list of pokemon when choosing */
 #pokemon-list {
     position: absolute;
     display: flex;
@@ -11,6 +12,7 @@
     animation-delay: 1s;
 }
 
+/* The actual pokemon themselves */
 #pokemon-list li {
     position: relative;
     padding: 0 10px;
@@ -64,6 +66,7 @@
     max-width: 120px;
 }
 
+/* The egg to hatch your tomogotchi */
 #egg {
     position: absolute;
     max-width: 5%;
@@ -74,6 +77,7 @@
     animation-fill-mode: forwards
 }
 
+/* The name tag above character */
 .name_tag {
     position: absolute;
     top: -35px;
@@ -83,6 +87,7 @@
     z-index: 5;
 }
 
+/* The chosen character */
 .pet {
     position: absolute;
     left: 780px;

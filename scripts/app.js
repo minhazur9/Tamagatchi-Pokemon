@@ -3,8 +3,8 @@ let min = 0; // minutes
 let minTen = 0 // tenth digit for min
 let hour = 0; // hours
 let hourTen = 0 // tenth digit for hour
-let day = 0; // days
-let realSec = 0; // Real world seconds
+let day = 0; // day # per year
+let realSec = 0; // Real world seconds * 3
 let topGap = 0; // Distance from the top of the screen
 let night = false; // If its night time or not
 let alive = true; // If its alive or not
@@ -15,6 +15,7 @@ let movementY = 380; // Movement from up and down
 let speed = -30; // The speed that the character is moving
 let paused = false; //If game is paused or not
 let step = null; //Id for movement interval
+let daysCount = 0 // Total days
 
 
 // The tomagotchi
@@ -87,7 +88,7 @@ function tick() {
     let time = setInterval(function () {
         min++;
         realSec++;
-        if(paused === true) {
+        if (paused === true) {
             clearInterval(time);
         }
         if (realSec % 2 === 0 && realSec !== 0) {
@@ -164,13 +165,13 @@ function adjustTime() {
         hour = 0;
         hourTen = 0;
         day++;
+        daysCount++;
     }
     $('#time').text(`${hourTen}${hour}:${minTen}${min}`);
 }
 
 // Brings up the game over screen 
 function gameOver() {
-    alive = false;
     $($pet).css({
         "animation-name": "fadeOut",
         "animation-duration": "1s",
@@ -182,11 +183,23 @@ function gameOver() {
         "animation-fill-mode": "forwards"
     });
     $('.lights_off').remove();
-    $('#screen').append('<img src="./images/rip.png" alt="Grave" class="rip">')
-    $('#screen').append('<h1 class="game_over">GAME OVER</h1>')
+    $('#screen').append('<img src="./images/rip.png" alt="Grave" class="rip">');
+    if (myPet.hunger >= 10) {
+        quote = `Oh no ${myPet.name} starved to death`;
+    }
+    else if (myPet.sleepiness >= 10) {
+        quote = `${myPet.name} died of sleep deprivation`;
+    }
+    else {
+        quote = `You bored ${myPet.name} to death`;
+    }
+    $('#screen').append(`<h1 class="game_over">GAME OVER</h1>`);
+    $('.game_over').append(`<h3 class="quote">${quote}<br>${myPet.name} lived for ${Math.floor(daysCount)} days </h3>`)
     if (night === true) {
         $('.game_over').addClass('night_text');
+        $('.quote').addClass('night_text');
     }
+    alive = false;
 }
 
 // Randomly selects a number for the x coordinate
@@ -196,8 +209,8 @@ function randomizerX() {
 
 function dontWork(id) {
     $(id)
-        .velocity({ backgroundColor: "#ff0000" },{duration:250})
-        .velocity({ backgroundColor: "#dddddd" },{duration:250})
+        .velocity({ backgroundColor: "#ff0000" }, { duration: 250 })
+        .velocity({ backgroundColor: "#dddddd" }, { duration: 250 })
 }
 
 

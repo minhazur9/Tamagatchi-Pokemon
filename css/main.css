@@ -17,6 +17,7 @@ body {
     min-height: 100vh;
 }
 
+/* Overlay when sleep button is pushed */
 .lights_off {
     display: block;
     position: absolute;
@@ -41,6 +42,7 @@ header {
     min-height: 23vh;
 }
 
+/* Statistics on the top of the screen */
 #stats {
     margin-top: 5px;
     display: flex;
@@ -49,6 +51,7 @@ header {
     color: white;
 }
 
+/* The bars on the meters */
 .meter li {
     margin-bottom: -2px;
     min-height: 15px;
@@ -58,6 +61,7 @@ header {
     min-width: 7px;
 }
 
+/* The group of buttons on the bottom */
 #button-group {
     display: flex;
     justify-content: space-around;
@@ -77,6 +81,7 @@ header {
     cursor: pointer;
     filter: drop-shadow(5px 5px 2px black);
 }
+
 .button:hover {
     background-color: rgb(163, 161, 161);
 }
@@ -86,6 +91,7 @@ header {
     filter: none;
 }
 
+/* The pause button */
 #pause {
     display: inline-block;
     margin-left: 30px;
@@ -97,12 +103,22 @@ header {
     filter: drop-shadow(0px 5px 2px black);
 }
 
+
 #pause:active {
     transform: translate(0px,5px);
     filter: none;
 }
 
 
+.pause_text {
+    position: absolute;
+    text-align: center;
+    left: 550px;
+    top: 200px;
+    color: white;
+}
+
+/* The mains screen */
 #screen {
     position: absolute;
     border: 10px solid black;
@@ -117,6 +133,7 @@ header {
     animation-iteration-count: 2;
 }
 
+/* The flash overlay whenever something exciting happens */
 .flash {
     display: block;
     position: absolute;
@@ -133,6 +150,7 @@ header {
     animation-fill-mode: forwards;
 }
 
+/* The ground */
 #ground {
     position: relative;
     border-top: 2px solid black;
@@ -143,10 +161,12 @@ header {
     z-index: 2;
 }
 
+/* Sky color at night time */
 .night {
     background-color : #0C1343 !important;
 }
 
+/* The sun */
 #sun {
     position: absolute;
     max-width: 10%;
@@ -157,6 +177,7 @@ header {
     z-index: 1;
 }
 
+/* The moon */
 #moon {
     position: absolute;
     max-width: 7%;
@@ -167,6 +188,7 @@ header {
     z-index: 1;
 }
 
+/* The start text */
 #start {
     position: absolute;
     top: 200px;
@@ -181,6 +203,7 @@ header {
     
 }
 
+/* Food */
 .rare_candy {
     position: absolute;
     max-width: 4%;
@@ -190,6 +213,7 @@ header {
     animation-duration: 1s;
 }
 
+/* The house */
 .house {
     position: absolute;
     max-width: 10%;
@@ -198,6 +222,7 @@ header {
     z-index: 5;
 }
 
+/* The ball */
 .ball {
     position: absolute;
     max-width: 3%;
@@ -208,6 +233,7 @@ header {
     z-index: 5;
 }
 
+/* The gravestone */
 .rip {
     position: absolute;
     max-width: 8%;
@@ -217,6 +243,7 @@ header {
     animation-duration: 1s;
 }
 
+/* The game over text */
 .game_over {
     position: absolute;
     left: 300px;
@@ -227,10 +254,12 @@ header {
     animation-fill-mode: forwards;
 }
 
+/* Text color at night time */
 .night_text {
     color: white
 }
 
+/* The name entry */
 #name {
     position: absolute;
     left: 300px;
@@ -241,6 +270,7 @@ header {
 
 }
 
+/* The actual text of the name */
 .name_text {
     position: absolute;
     font-size: 30px;
@@ -249,12 +279,26 @@ header {
     opacity: 40%;
 }
 
+/* The label when entering name  */
 label {
     position: absolute;
     font-size: 30px;
     top: -40px;
     left: -2px;
     color: white;
+    white-space: nowrap;
+}
+
+/* Death quote */
+.quote {
+    position:absolute;
+    text-align: left;
+    top: 43px;
+    z-index: 2;
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    font-size: 30px;
     white-space: nowrap;
 }
 

@@ -31,7 +31,7 @@ $('#pokemon-list').on('click', 'li', function (event) {
 $('#feed').on("click", function () {
     $('.rare_candy').remove();
     $('#feed').removeClass('red');
-    if (myPet.hunger >= 1 && !($('img').hasClass('house')) && alive) {
+    if (myPet.hunger >= 1 && !($('img').hasClass('house')) && alive && paused === false) {
         let random = randomizerX();
         $('#screen').append('<img src="./images/rare_candy.png" alt="Rare Candy" class="rare_candy"></img>');
         $('.rare_candy').css({ 'left': `${random}px` })
@@ -44,7 +44,7 @@ $('#feed').on("click", function () {
 
 // The sleep button
 $('#sleep').on("click", function () {
-    if (myPet.sleepiness >= 2 && !($('img').hasClass('house')) && alive) {
+    if (myPet.sleepiness >= 2 && !($('img').hasClass('house')) && alive && paused === false) {
         $('.lights_off').remove();
         myPet.boredUp();
         myPet.boredUp();
@@ -73,7 +73,7 @@ $('#sleep').on("click", function () {
 
 // The play button
 $('#play').on("click", function () {
-    if (myPet.boredom >= 2 && !($('img').hasClass('house')) && alive) {
+    if (myPet.boredom >= 2 && !($('img').hasClass('house')) && alive && paused === false) {
         $('.ball').remove();
         $('#screen').append('<img src="./images/pokeball.png" alt="Pokeball" class="ball"></img>');
         if (speed < 0) {
@@ -122,9 +122,11 @@ $('#name').on("submit", function (event) {
 
 //Pause the game
 $('#pause').on('click', function () {
-    if (step != null) {
+    if (step != null && alive) {
         paused = !paused;
+        $('#screen').append('<h1 class="pause_text">PAUSED</h1>');
         if (paused === false) {
+            $('.pause_text').remove();
             move();
             tick();
         }

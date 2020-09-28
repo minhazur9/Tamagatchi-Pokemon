@@ -76,3 +76,5 @@ If it a ball appears it should jump.
 After it reaches age 4 it should disappear and be replaced with another sprite.
 
 After it reaches age 9 it should disappear again and be replaced with an adult sprite.
+
+The screen should start flashing and the character should stop moving briefly.
