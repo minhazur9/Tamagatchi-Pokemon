@@ -80,6 +80,6 @@ The screen should start flashing and the character should stop moving briefly.
 
 ### WireFrames
 
-[Start](./wireframes/start.png)
+![Start](/wireframes/start.png)
 
-[Night](./wireframes/night.png)
+![Night](/wireframes/night.png)
