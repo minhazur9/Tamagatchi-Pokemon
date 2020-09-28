@@ -200,6 +200,7 @@ header {
     animation-name: slideIn;
     animation-duration: 2s;
     cursor: default;
+    z-index: 2;
     
 }
 
@@ -301,4 +302,27 @@ label {
     font-size: 30px;
     white-space: nowrap;
 }
+/* clouds */
+.clouds {
+    position: absolute;
+    max-width: 30%;
+    z-index: 1;
+    top: 50px;
+    left: 600px;
+}
 
+.texture {
+    position: absolute;
+    width: 110%;
+    height: 100%;
+    left: -30px;
+}
+
+.stars {
+    position: absolute;
+    width: 60%;
+    height: 50%;
+    z-index: 1;
+    top: 50px;
+    left: 270px
+}

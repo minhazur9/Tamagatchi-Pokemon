@@ -93,6 +93,9 @@ function tick() {
         }
         if (realSec % 2 === 0 && realSec !== 0) {
             cycle();
+            if (night === false) {
+                moveClouds();
+            }
         }
         adjustTime();
         if (realSec % 180 === 0 && realSec !== 0) { // Keeps track of meters
@@ -123,18 +126,25 @@ function tick() {
 
 }
 
+// move the clouds 
+function moveClouds() {
+    $('.clouds').velocity({ translateX: `-=1px` });
+}
 // Cycles through the day and night
 function cycle() {
     topGap++;
     if (topGap === 400) {
         night = !night;
+        $('.clouds').remove();
         topGap = 0;
         $('#screen').toggleClass('night');
     }
     if (night === false) {
         if (topGap === 0) {
             $('#moon').remove();
+            $('.stars').remove();
             $('#screen').append('<img src="./images/sun.png" alt="The Sun" id="sun"></img>');
+            $('#screen').append('<img src="./images/clouds.png" alt="Clouds" class="clouds">');
         }
         $('#sun').css(`transform`, `translateY(${topGap}px)`);
         return;
@@ -142,6 +152,7 @@ function cycle() {
     if (topGap === 0) {
         $('#sun').remove();
         $('#screen').append('<img src="./images/moon.png" alt="The Moon" id="moon">');
+        $('#screen').append('<img src="./images/stars.png" alt="Stars" class="stars">')
     }
     $('#moon').css(`transform`, `translateY(${topGap}px)`);
 

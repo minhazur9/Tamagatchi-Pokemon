@@ -10,6 +10,7 @@
     animation-fill-mode: forwards;
     animation-duration: 1.7s;
     animation-delay: 1s;
+    z-index: 3;
 }
 
 /* The actual pokemon themselves */
