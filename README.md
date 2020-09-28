@@ -1,5 +1,13 @@
 # Project #0: The Game
 
+## About
+
+The game is a tamagotchi game inspired by Pokemon. The main goal is to just take care of your character for as long as you can before any of its three meters fill up or else it dies. You have to feed it when it gets hungry, put it to sleep when its sleepy, and play with it when its bored. If you have taken care of your pet for long enough it may evolve. 
+
+## Explanation
+
+My approach for this game was to use a simple tick function to control the day/night cycle, the clock, the evolutions, and the meters. Its not all controlled by single function, but its that single function that is accompanied by many other helper functions to those little tasks of which all are dependant on a time interval. My main technologies were just css animation keyframes, jquery, and a little bit of velocity. CSS key frames gave me enough flexibility with the percentages and animation durations and delays for it to be capable of complex animations but the problem was it was very hard to chain multiple animations to the same element so that is where velocity came in. Some of the unsolved problems would be that the back and forth animation with the character would sometimes start going crazy when you go into a different tab as if the animation is trying to catch up to the actual numbers in the time interval. Another problem would just be in unpolished animations not meshing well with some PNGs.
+
 ## User Stories
 
 ### Layout
@@ -76,9 +84,9 @@ After it reaches age 4 it should disappear and be replaced with another sprite.
 
 After it reaches age 9 it should disappear again and be replaced with an adult sprite.
 
-The screen should start flashing and the character should stop moving briefly.
+The screen should start flashing and the character should stop moving briefly.  
 
-### WireFrames
+## WireFrames
 
 ![Start](/wireframes/start.PNG)
 
