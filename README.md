@@ -83,3 +83,7 @@ The screen should start flashing and the character should stop moving briefly.
 ![Start](/wireframes/start.PNG)
 
 ![Night](/wireframes/night.PNG)
+
+![House](/wireframes/wireframeHouse.PNG)
+
+![Play](/wireframes/play.PNG)
