@@ -2,7 +2,7 @@
 
 ## About
 
-The game is a tamagotchi game inspired by Pokemon. The main goal is to just take care of your character for as long as you can before any of its three meters fill up or else it dies. You have to feed it when it gets hungry, put it to sleep when its sleepy, and play with it when its bored. If you have taken care of your pet for long enough it may evolve. 
+The game is a tamagotchi game inspired by Pokemon. The main goal is to just take care of your character for as long as you can before any of its three meters fill up or else it dies. You have to feed it when it gets hungry, put it to sleep when its sleepy, and play with it when its bored. If you have taken care of your pet for long enough it may evolve. Live:https://minhazur9.github.io/Tamagatchi-Pokemon/
 
 ## Explanation
 
